@@ -9,7 +9,6 @@ import {
   Modal,
   Toolbar,
   Typography,
-  Modal
 } from "@mui/material";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import { NavLink } from "react-router-dom";
