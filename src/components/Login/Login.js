@@ -3,10 +3,10 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Person2Icon from '@mui/icons-material/Person2';
 import LockIcon from '@mui/icons-material/Lock';
-import { Link, Grid, Box,Container, OutlinedInput, InputAdornment, IconButton, FormHelperText, Alert,Snackbar } from "@mui/material";
+import { Link, Box,Container, OutlinedInput, InputAdornment, IconButton, FormHelperText, Alert,Snackbar } from "@mui/material";
 import StyledFormControl from '../../styles/StyledFormControl';
 import StyledButton from '../../styles/StyledButton';
-import Logo from '../../assets/images/logo-final.svg'
+import Logo from '../../assets/images/logo.svg'
 
 
 
@@ -87,7 +87,6 @@ function Login() {
               type='text' 
               placeholder="Tên đăng nhập"
               autoFocus
-              disableHover
               onKeyPress={handleKeyPress}
               startAdornment={
                 <InputAdornment position="start">
@@ -137,7 +136,7 @@ function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, bgcolor: "#fba34e"  }}
+              sx={{ mt: 3, mb: 2,}}
             >
               Đăng nhập
             </StyledButton>

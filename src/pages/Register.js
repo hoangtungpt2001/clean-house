@@ -1,9 +1,7 @@
 import {
   Button,
   TextField,
-  FormGroup,
   FormControlLabel,
-  Checkbox,
   FormControl,
   InputLabel,
   Select,
@@ -14,8 +12,7 @@ import {
 } from "@mui/material";
 import { Box, margin, padding } from "@mui/system";
 import React, { useState } from "react";
-import { Form } from "react-router-dom";
-import Layout from "../components/layout/Layout";
+
 
 const Register = () => {
   const [inputs, setInputs] = useState({
