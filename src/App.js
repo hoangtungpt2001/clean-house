@@ -6,7 +6,7 @@ import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Pagenotfound from "./pages/Pagenotfound";
 import Menu from "./pages/Menu";
-
+import './App.scss';
 
 function App() {
   return (

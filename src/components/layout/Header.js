@@ -8,19 +8,29 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  Modal
 } from "@mui/material";
-// import Logo from "../../images/logo.svg";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import { NavLink } from "react-router-dom";
-import "../../styles/HeaderStyles.css";
+import "../../styles/HeaderStyles.scss";
 import MenuIcon from "@mui/icons-material/Menu";
+import Login from "../Login/Login";
 const Header = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [openLogin, setOpenLogin] = useState(false);
   // hndle menu click
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
+  const tongleModal = () => {
+    setOpenLogin(!openLogin);
+  }
+  const handleOverlayClick = (event) => {
+    if (event.target.classList.contains('modal-login')) {
+      tongleModal();
+    }
+  };
+    
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography
@@ -48,30 +58,28 @@ const Header = () => {
           <NavLink to={"/contact"}>Contact</NavLink>
         </li>
         <li>
-            <Button variant="outlined">Login</Button>
+            <Button variant="outlined" >Login</Button>
         </li>
       </ul>
     </Box>
   );
-  
   return ( 
     <>
       <Box>
-        <AppBar component={"nav"} sx={{ bgcolor: "orange" }}>
+        <AppBar component="nav" sx={{ bgcolor: "#fba34e" }} position="static">
           <Toolbar>
-          <IconButton color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              sx={{
-                mr: 2,
-                display: { sm:"none" },
-              }} onClick={handleDrawerToggle}>
-            <MenuIcon/>
-          </IconButton>
+            <IconButton color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                sx={{
+                  mr: 2,
+                  display: { sm:"none" },
+                }} onClick={handleDrawerToggle}>
+              <MenuIcon/>
+            </IconButton>
             <Typography>
-              
               <HomeWorkIcon/>
-             HOUSE CLEANING
+              HOUSE CLEANING
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               <ul className="navigation-menu">
@@ -90,7 +98,15 @@ const Header = () => {
                   <NavLink to={"/contact"}>Contact</NavLink>
                 </li>
                 <li>
-                    <Button variant="outlined">Login</Button>
+                    <Button variant="outlined" onClick={tongleModal} >Login</Button>
+                    <Modal
+                        open={openLogin}
+                        onClose={tongleModal}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                      <Login />   
+                    </Modal>
                 </li>
               </ul>
             </Box>
@@ -112,10 +128,8 @@ const Header = () => {
             {drawer}
           </Drawer>
         </Box>
-        <Box>
-            <Toolbar/>
-        </Box>
       </Box>
+     
     </>
   );
 };
