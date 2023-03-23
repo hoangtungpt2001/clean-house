@@ -1,15 +1,12 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import Services from "./pages/Service";
+import Experience from "./pages/Experience";
 import Home from "./pages/Home";
 import Pagenotfound from "./pages/Pagenotfound";
-import Menu from "./pages/Menu";
 
 import './App.scss';
-
-import Register from "./pages/Register";
 
 
 function App() {
@@ -18,10 +15,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element = {<Home />}/>
-          <Route path="/about" element = {<About />}/>
-          <Route path="/contact" element = {<Contact />}/>
-          <Route path="/menu" element = {<Menu />}/>
-          <Route path="/register" element = {<Register />}/>
+          <Route path="/service" element = {<Services />}/>
+          <Route path="/experience" element = {<Experience />}/>
           <Route path="*" element = {<Pagenotfound />}/>
         </Routes>
       </BrowserRouter>
