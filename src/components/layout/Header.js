@@ -6,6 +6,7 @@ import {
   Divider,
   Drawer,
   IconButton,
+  Modal,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -14,17 +15,24 @@ import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.css";
 import MenuIcon from "@mui/icons-material/Menu";
+import Register from "../../pages/Register";
+import Login from "../../pages/Login";
 const Header = () => {
-    const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   // hndle menu click
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const handleOpen = () => {
+    setRegisterOpen(!registerOpen);
   };
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography
-        color={"goldenrod"}
+        color={"red"}
         variant="h6"
         component="div"
         sx={{ flexGrow: 1, my: 2 }}
@@ -48,30 +56,50 @@ const Header = () => {
           <NavLink to={"/contact"}>Contact</NavLink>
         </li>
         <li>
-            <Button variant="outlined">Login</Button>
+          <Button variant="outlined">Login</Button>
+        </li>
+        <li>
+          <Button onClick={handleOpen}>Open modal</Button>
+          <Modal
+            open={registerOpen}
+            onClose={handleOpen}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Text in a modal
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </Typography>
+            </Box>
+          </Modal>
         </li>
       </ul>
     </Box>
   );
-  
-  return ( 
+
+  return (
     <>
       <Box>
         <AppBar component={"nav"} sx={{ bgcolor: "orange" }}>
           <Toolbar>
-          <IconButton color="inherit"
+            <IconButton
+              color="inherit"
               aria-label="open drawer"
               edge="start"
               sx={{
                 mr: 2,
-                display: { sm:"none" },
-              }} onClick={handleDrawerToggle}>
-            <MenuIcon/>
-          </IconButton>
+                display: { sm: "none" },
+              }}
+              onClick={handleDrawerToggle}
+            >
+              <MenuIcon />
+            </IconButton>
             <Typography>
-              
-              <HomeWorkIcon/>
-             HOUSE CLEANING
+              <HomeWorkIcon />
+              HOUSE CLEANING
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               <ul className="navigation-menu">
@@ -89,8 +117,21 @@ const Header = () => {
                 <li>
                   <NavLink to={"/contact"}>Contact</NavLink>
                 </li>
+
                 <li>
-                    <Button variant="outlined">Login</Button>
+                  <Button onClick={handleOpen}>Open modal</Button>
+                  <Modal
+                    open={registerOpen}
+                    onClose={handleOpen}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box>
+                      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <Register />
+                      </Typography>
+                    </Box>
+                  </Modal>
                 </li>
               </ul>
             </Box>
@@ -113,7 +154,7 @@ const Header = () => {
           </Drawer>
         </Box>
         <Box>
-            <Toolbar/>
+          <Toolbar />
         </Box>
       </Box>
     </>
