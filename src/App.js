@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Pagenotfound from "./pages/Pagenotfound";
 import Menu from "./pages/Menu";
+import Register from "./pages/Register";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/about" element = {<About />}/>
           <Route path="/contact" element = {<Contact />}/>
           <Route path="/menu" element = {<Menu />}/>
+          <Route path="/register" element = {<Register />}/>
           <Route path="*" element = {<Pagenotfound />}/>
         </Routes>
       </BrowserRouter>
