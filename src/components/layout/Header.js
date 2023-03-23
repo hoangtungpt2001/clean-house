@@ -6,6 +6,7 @@ import {
   Divider,
   Drawer,
   IconButton,
+  Modal,
   Toolbar,
   Typography,
   Modal
@@ -14,27 +15,30 @@ import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import { NavLink } from "react-router-dom";
 import "../../styles/HeaderStyles.scss";
 import MenuIcon from "@mui/icons-material/Menu";
+import Register from "../../pages/Register";
 import Login from "../Login/Login";
 const Header = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
+
+
+
   // hndle menu click
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
   const tongleModal = () => {
     setOpenLogin(!openLogin);
   }
-  const handleOverlayClick = (event) => {
-    if (event.target.classList.contains('modal-login')) {
-      tongleModal();
-    }
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const handleOpen = () => {
+    setRegisterOpen(!registerOpen);
   };
-    
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography
-        color={"goldenrod"}
+        color={"red"}
         variant="h6"
         component="div"
         sx={{ flexGrow: 1, my: 2 }}
@@ -58,27 +62,50 @@ const Header = () => {
           <NavLink to={"/contact"}>Contact</NavLink>
         </li>
         <li>
-            <Button variant="outlined" >Login</Button>
+          <Button variant="outlined">Login</Button>
+        </li>
+        <li>
+          <Button onClick={handleOpen}>Open modal</Button>
+          <Modal
+            open={registerOpen}
+            onClose={handleOpen}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Text in a modal
+              </Typography>
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </Typography>
+            </Box>
+          </Modal>
         </li>
       </ul>
     </Box>
   );
-  return ( 
+
+  return (
+
     <>
       <Box>
         <AppBar component="nav" sx={{ bgcolor: "#fba34e" }} position="static">
           <Toolbar>
-            <IconButton color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                sx={{
-                  mr: 2,
-                  display: { sm:"none" },
-                }} onClick={handleDrawerToggle}>
-              <MenuIcon/>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              sx={{
+                mr: 2,
+                display: { sm: "none" },
+              }}
+              onClick={handleDrawerToggle}
+            >
+              <MenuIcon />
             </IconButton>
             <Typography>
-              <HomeWorkIcon/>
+              <HomeWorkIcon />
               HOUSE CLEANING
             </Typography>
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
@@ -97,7 +124,9 @@ const Header = () => {
                 <li>
                   <NavLink to={"/contact"}>Contact</NavLink>
                 </li>
+
                 <li>
+
                     <Button variant="outlined" onClick={tongleModal} >Login</Button>
                     <Modal
                         open={openLogin}
@@ -107,6 +136,21 @@ const Header = () => {
                     >
                       <Login />   
                     </Modal>
+
+                  <Button onClick={handleOpen}>Open modal</Button>
+                  <Modal
+                    open={registerOpen}
+                    onClose={handleOpen}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box>
+                      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        <Register />
+                      </Typography>
+                    </Box>
+                  </Modal>
+
                 </li>
               </ul>
             </Box>
