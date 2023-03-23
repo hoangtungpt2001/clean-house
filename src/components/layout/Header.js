@@ -9,26 +9,32 @@ import {
   Modal,
   Toolbar,
   Typography,
+  Modal
 } from "@mui/material";
-// import Logo from "../../images/logo.svg";
 import HomeWorkIcon from "@mui/icons-material/HomeWork";
 import { NavLink } from "react-router-dom";
-import "../../styles/HeaderStyles.css";
+import "../../styles/HeaderStyles.scss";
 import MenuIcon from "@mui/icons-material/Menu";
 import Register from "../../pages/Register";
-import Login from "../../pages/Login";
+import Login from "../Login/Login";
 const Header = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
+    const [openLogin, setOpenLogin] = useState(false);
+
+
 
   // hndle menu click
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const tongleModal = () => {
+    setOpenLogin(!openLogin);
+  }
   const [registerOpen, setRegisterOpen] = useState(false);
   const handleOpen = () => {
     setRegisterOpen(!registerOpen);
   };
-
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography
@@ -81,9 +87,10 @@ const Header = () => {
   );
 
   return (
+
     <>
       <Box>
-        <AppBar component={"nav"} sx={{ bgcolor: "orange" }}>
+        <AppBar component="nav" sx={{ bgcolor: "#fba34e" }} position="static">
           <Toolbar>
             <IconButton
               color="inherit"
@@ -119,6 +126,17 @@ const Header = () => {
                 </li>
 
                 <li>
+
+                    <Button variant="outlined" onClick={tongleModal} >Login</Button>
+                    <Modal
+                        open={openLogin}
+                        onClose={tongleModal}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                      <Login />   
+                    </Modal>
+
                   <Button onClick={handleOpen}>Open modal</Button>
                   <Modal
                     open={registerOpen}
@@ -132,6 +150,7 @@ const Header = () => {
                       </Typography>
                     </Box>
                   </Modal>
+
                 </li>
               </ul>
             </Box>
@@ -153,10 +172,8 @@ const Header = () => {
             {drawer}
           </Drawer>
         </Box>
-        <Box>
-          <Toolbar />
-        </Box>
       </Box>
+     
     </>
   );
 };
