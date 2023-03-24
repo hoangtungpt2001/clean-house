@@ -1,0 +1,26 @@
+$color-prymary: #FA8D22;
+$heading-color : #353739;
+.footer {
+    background-color: #f4f4f4;
+    .footer-content {
+        padding: 50px 0;
+            .logo {
+                width: 50%;
+            }
+        .footer-heading {
+            font-weight: 600;
+            color: $heading-color;
+        }
+        .footer-link {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap:  15px 0;
+            a {
+                &:hover{
+                    color: $color-prymary;
+                }
+            }
+        }
+    }
+}

@@ -1,9 +1,10 @@
-import { Margin, Padding } from '@mui/icons-material'
-import { Box, Button, Modal, Paper, TextField, Typography } from '@mui/material'
-import { style } from '@mui/system'
-import React from 'react'
-import Carousel from 'react-material-ui-carousel'
-import Layout from '../components/layout/Layout'
+
+import { Paper } from '@mui/material';
+import React from 'react';
+import Carousel from 'react-material-ui-carousel';
+import Layout from '../components/layout/Layout';
+import Process from '../components/Process/Process';
+import Footer from '../components/Footer/Footer';
 // import "../styles/Paper.css";
 const Home = () => {
 
@@ -43,15 +44,14 @@ const Home = () => {
 ];
   return (
     <Layout>
-    {/* <h1>home</h1> */}
 
     <Carousel>
-  {items.map((item, i) => (
-    <Item key={i} {...item} />
-  ))}
-</Carousel>
-
-
+      {items.map((item, i) => (
+        <Item key={i} {...item} />
+      ))}
+    </Carousel>
+    <Process/>
+    <Footer/>
         
     </Layout>
   )
@@ -63,4 +63,4 @@ const Home = () => {
   
 }
 
-export default Home
+export default Home;

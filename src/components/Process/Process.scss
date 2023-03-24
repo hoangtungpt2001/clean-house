@@ -1,0 +1,34 @@
+$heading-color : #353739;
+$color-subheading : #494b4c;
+$color-text : #5d5e60;
+$color-prymary: #FA8D22;
+.process {
+    margin: 100px 0;
+    .process-head {
+        font-weight: 600;
+        color: $heading-color;
+    }
+    .process-item {
+        .process-heading {
+            display: flex;
+            align-items: center;
+            gap:  0 10px;
+            
+            .process-title{
+                color: $color-subheading;
+                font-weight: 500;
+            }
+        }
+        .process-des {
+            color: $color-text;
+        }
+    }
+    .step {
+        display: flex;
+        height: 100%;
+        font-size: 40px;
+        color: $color-prymary;
+        align-items: center;
+        justify-content: center;
+    }
+}
