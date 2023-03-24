@@ -5,6 +5,7 @@ import Carousel from 'react-material-ui-carousel';
 import Layout from '../components/layout/Layout';
 import Process from '../components/Process/Process';
 import Footer from '../components/Footer/Footer';
+import Commitment from '../components/Commitment/Commitment';
 // import "../styles/Paper.css";
 const Home = () => {
 
@@ -50,6 +51,7 @@ const Home = () => {
         <Item key={i} {...item} />
       ))}
     </Carousel>
+    <Commitment />
     <Process/>
     <Footer/>
         

@@ -16,7 +16,7 @@ $color-prymary: #FA8D22;
             
             .process-title{
                 color: $color-subheading;
-                font-weight: 500;
+                font-weight: 600;
             }
         }
         .process-des {
@@ -26,9 +26,13 @@ $color-prymary: #FA8D22;
     .step {
         display: flex;
         height: 100%;
-        font-size: 40px;
-        color: $color-prymary;
         align-items: center;
         justify-content: center;
+        .step-content {
+            background-color: $color-prymary;
+            color: #fff;
+            padding: 50px;
+            border-radius: 100%;
+        }
     }
 }

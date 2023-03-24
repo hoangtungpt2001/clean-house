@@ -1,0 +1,33 @@
+$heading-color : #353739;
+$color-subheading : #494b4c;
+$color-text : #5d5e60;
+$color-prymary: #FA8D22;
+.commit {
+    margin-top: 100px;
+    .commit-head{
+        font-weight: 600;
+        color: $heading-color;
+    }
+    .commit-item {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        height: 100%;
+        background-color: #fff;
+        border-radius: 15px;
+        .commit-img {
+            overflow: hidden;
+            img{
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+        .commit-heading {
+            .commit-title {
+                color: $color-subheading;
+                font-weight: 600;
+            }
+            .commit-des {
+                color: $color-text;
+            }
+        }
+    }
+}

@@ -13,12 +13,13 @@ import processOne from "../../assets/images/process-one.png";
 import processTwo from "../../assets/images/process-two.png";
 import processThree from "../../assets/images/process-three.png";
 import processFour from "../../assets/images/process-four.png";
+
 import './Process.scss';
 const Process = () => {
     return (
         <>
             <Container maxWidth="lg" className="process" >
-                <Typography variant="h3" component="h2" mb={4} className="process-head">
+                <Typography variant="h4" component="h2" mb={4} className="process-head">
                      Quy trình sử dụng dịch vụ
                 </Typography>
                 <Grid container rowSpacing={1} columnSpacing={1}>
@@ -39,14 +40,18 @@ const Process = () => {
                         </Box>
                     </Grid>
                     <Grid item md={6} sx={{ display: { xs: "none", md: "block" }}}>
-                        <Typography variant="body1" component="p" className="step">
-                               Bước 1
+                        <Box className="step">
+                            <Typography variant="h5" className="step-content" >
+                             Bước 1
                             </Typography>
+                        </Box>
                     </Grid>
                     <Grid item md={6} sx={{ display: { xs: "none", md: "block" }}}>
-                        <Typography variant="body1" component="p" className="step">
-                               Bước 2
+                        <Box className="step">
+                             <Typography variant="h5" className="step-content" >
+                             Bước 2
                             </Typography>
+                        </Box>
                     </Grid>
                     <Grid item xs={12} md={6} >
                         <Box component="div" className="process-item">
@@ -82,14 +87,18 @@ const Process = () => {
                         </Box>
                     </Grid>
                     <Grid item md={6} sx={{ display: { xs: "none", md: "block" }}}>
-                        <Typography variant="body1" component="p" className="step">
-                                Bước 3
+                        <Box className="step">
+                               <Typography variant="h5" className="step-content" >
+                             Bước 3
                             </Typography>
+                            </Box>
                     </Grid>
                     <Grid item md={6} sx={{ display: { xs: "none", md: "block" }}}>
-                         <Typography variant="body1" component="p" className="step">
-                                Bước 4
+                         <Box  className="step">
+                            <Typography variant="h5" className="step-content" >
+                             Bước 4
                             </Typography>
+                            </Box>
                     </Grid> 
                     <Grid item xs={12} md={6} >
                        <Box component="div" className="process-item">
