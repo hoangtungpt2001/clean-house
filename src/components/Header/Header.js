@@ -8,12 +8,11 @@ import {
   IconButton,
   Modal,
   Toolbar,
-  Typography,
   Container ,
 } from "@mui/material";
 import { NavLink, Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import Register from "../../pages/Register";
+import Register from "../Register/Register";
 import Login from "../Login/Login";
 import StyledButton from "../../styles/StyledButton";
 import Logo from "../../assets/images/logo.svg";

@@ -10,6 +10,7 @@ import {
   RadioGroup,
   Radio,
 } from "@mui/material";
+import './Register.scss';
 import { Box, margin, padding } from "@mui/system";
 import React, { useState } from "react";
 

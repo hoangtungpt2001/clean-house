@@ -15,12 +15,43 @@
             text-decoration: none;
             color: #000;
             font-weight: 600;
+            transition: all 0.5s ease-out;
+            position: relative;
+            &::after {
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    width: 0%;
+                    content: '';
+                    color: transparent;
+                    background: #fa8d22;
+                    height: 2px;
+                }
+            
+                &:hover::after {
+                    cursor: pointer;
+                    width: 50%;
+                }
             &:hover {
                 color: #fa8d22;
             }
         }
         .active {
             color: #fa8d22 !important;
+            &::after {
+                    position: absolute;
+                        bottom: -5px;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        width: 50%;
+                        content: '';
+                        color: transparent;
+                        background: #fa8d22;
+                        height: 2px;
+                }
         }
     }
     .auth-action {
