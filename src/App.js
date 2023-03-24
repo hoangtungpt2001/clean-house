@@ -5,7 +5,7 @@ import Services from "./pages/Service";
 import Experience from "./pages/Experience";
 import Home from "./pages/Home";
 import Pagenotfound from "./pages/Pagenotfound";
-
+import GoToTop from "./components/GoToTop/GoToTop";
 import './App.scss';
 
 
@@ -20,6 +20,7 @@ function App() {
           <Route path="*" element = {<Pagenotfound />}/>
         </Routes>
       </BrowserRouter>
+      <GoToTop />
     </div>
   );
 }
