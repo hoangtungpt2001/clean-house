@@ -106,6 +106,9 @@ const Header = () => {
                 <li>
                   <NavLink to={"/experience"}>Kinh nghiệm hay</NavLink>
                 </li>
+                <li>
+                  <NavLink to={"/infor"}>Thông Tin Cá Nhân</NavLink>
+                </li>
                 </ul>
             </Box>
             <IconButton

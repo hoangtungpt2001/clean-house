@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import Pagenotfound from "./pages/Pagenotfound";
 import GoToTop from "./components/GoToTop/GoToTop";
 import './App.scss';
+import InFor from "./pages/InFor";
+
 
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
           <Route path="/" element = {<Home />}/>
           <Route path="/service" element = {<Services />}/>
           <Route path="/experience" element = {<Experience />}/>
+          <Route path="/infor" element = {<InFor/>}/>
           <Route path="*" element = {<Pagenotfound />}/>
         </Routes>
       </BrowserRouter>
