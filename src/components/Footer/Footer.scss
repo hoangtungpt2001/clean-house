@@ -1,15 +1,16 @@
-$color-prymary: #FA8D22;
-$heading-color : #353739;
+@import '../../styles/variable.scss';
 .footer {
-    background-color: #f4f4f4;
+    background: rgb(97, 96, 96);
+    background: linear-gradient(90deg, rgba(97, 96, 96, 1) 50%, rgba(204, 203, 203, 1) 100%);
     .footer-content {
         padding: 50px 0;
             .logo {
-                width: 50%;
+                width: 70%;
+                padding-bottom: 50px;
             }
         .footer-heading {
             font-weight: 600;
-            color: $heading-color;
+            color: $color-prymary;
         }
         .footer-link {
             display: flex;
@@ -17,6 +18,7 @@ $heading-color : #353739;
             justify-content: center;
             gap:  15px 0;
             a {
+                color: #fff;
                 &:hover{
                     color: $color-prymary;
                 }

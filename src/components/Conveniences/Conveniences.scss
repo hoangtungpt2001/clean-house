@@ -1,0 +1,58 @@
+@import '../../styles/variable.scss';
+.conveniences{
+    margin-top: 100px;
+    .conveniences-head{
+        font-weight: 600;
+        color: $heading-color;
+    }
+    .conveniences-item {
+        .conveniences-img {
+            overflow: hidden;
+            height: 200px;
+            img {
+                object-fit: cover;
+            }
+        }
+        .conveniences-content{
+            .conveniences-title {
+                color: $color-subheading;
+                font-weight: 600;
+            }
+            .conveniences-des{
+                color: $color-text;
+                text-align: justify;
+            }
+        }
+    }
+    //custom carousel
+    .react-multi-carousel-item {
+        padding: 0 15px;
+    }
+    .react-multiple-carousel__arrow {
+        background: transparent;
+        top: 200px;
+        &::before{
+            font-size: 30px;
+            color: $color-prymary;
+        }
+        &:hover {
+            background: transparent;
+        }
+    }
+    .react-multiple-carousel__arrow--left {
+        left: -15px;
+    }
+    .react-multiple-carousel__arrow--right {
+        right: -15px;
+    }
+    .react-multi-carousel-dot button{
+        margin-top: 15px;
+        width: 8px;
+        height: 8px;
+        background: #888888;
+        border-width: 0;
+    }
+    .react-multi-carousel-dot--active button{
+        background: $color-prymary;
+    }
+}

@@ -6,6 +6,7 @@ import Layout from '../components/layout/Layout';
 import Process from '../components/Process/Process';
 import Footer from '../components/Footer/Footer';
 import Commitment from '../components/Commitment/Commitment';
+import Conveniences from '../components/Conveniences/Conveniences';
 // import "../styles/Paper.css";
 const Home = () => {
 
@@ -51,6 +52,7 @@ const Home = () => {
         <Item key={i} {...item} />
       ))}
     </Carousel>
+    <Conveniences />
     <Commitment />
     <Process/>
     <Footer/>
