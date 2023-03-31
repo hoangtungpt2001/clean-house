@@ -1,10 +1,11 @@
+@import '../../styles/variable.scss';
 .header-nav {
     box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
     display: flex;
     align-items: center;
     justify-content: space-between;
     .logo {
-        height: 50px;
+        height: 55px;
     }
     .navigation {
         display: flex;
@@ -13,8 +14,8 @@
         gap: 0 30px;
         a {
             text-decoration: none;
-            color: #000;
-            font-weight: 600;
+            color: $color-menu;
+            font-size: 18px;
             transition: all 0.5s ease-out;
             position: relative;
             &::after {
@@ -26,7 +27,7 @@
                     width: 0%;
                     content: '';
                     color: transparent;
-                    background: #fa8d22;
+                    background: $color-prymary;
                     height: 2px;
                 }
             
@@ -35,11 +36,11 @@
                     width: 50%;
                 }
             &:hover {
-                color: #fa8d22;
+                color: $color-prymary;
             }
         }
         .active {
-            color: #fa8d22 !important;
+            color: $color-prymary !important;
             &::after {
                     position: absolute;
                         bottom: -5px;
@@ -49,7 +50,7 @@
                         width: 50%;
                         content: '';
                         color: transparent;
-                        background: #fa8d22;
+                        background: $color-prymary;
                         height: 2px;
                 }
         }
@@ -60,15 +61,24 @@
         justify-content: center;
         gap: 0 30px;
         .btn-text {
-            color: #fa8d22;
+            color: $color-prymary;
             &:hover {
                 background-color: transparent;
             }
         }
     }
 }
-
-
+.user-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 10px;
+    cursor: pointer;
+    .user-name {
+        font-weight: 600;
+        color: $color-prymary;
+    }
+}
 
 
 
@@ -91,14 +101,13 @@
         gap: 30px 0;
             a {
                 text-decoration: none;
-                color: #000;
-                font-weight: 600;
+                color: $color-menu;
                 &:hover {
-                    color: #fa8d22;
+                    color: $color-prymary;
                 }
             }
             .active {
-                color: #fa8d22 !important;
+                color: $color-prymary !important;
             }
     }
         .auth-action {
@@ -109,7 +118,7 @@
             justify-content: center;
             gap: 20px 0;
                 .btn-text {
-                    color: #fa8d22;
+                    color: $color-prymary;
                     &:hover {
                         background-color: transparent;
                     }

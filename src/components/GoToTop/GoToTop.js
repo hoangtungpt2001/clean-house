@@ -30,7 +30,7 @@ const GoToTop = () => {
             color: "#fff",
             backgroundColor: "#FA8D22",
             ":hover": {
-                backgroundColor: "#FA8072"
+                backgroundColor: "#FA8D22"
             }
         }} >
           <ExpandLessIcon fontSize="large" />

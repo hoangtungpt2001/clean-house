@@ -1,7 +1,4 @@
-$heading-color : #353739;
-$color-subheading : #494b4c;
-$color-text : #5d5e60;
-$color-prymary: #FA8D22;
+@import '../../styles/variable.scss';
 .commit {
     margin-top: 100px;
     .commit-head{
@@ -13,20 +10,26 @@ $color-prymary: #FA8D22;
         height: 100%;
         background-color: #fff;
         border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+ 
         .commit-img {
             overflow: hidden;
+            flex-shrink: 0;
             img{
                 height: 100%;
                 object-fit: contain;
             }
         }
-        .commit-heading {
+        .commit-content {
+            flex: 1;
             .commit-title {
                 color: $color-subheading;
-                font-weight: 600;
+                font-weight: 600;  
             }
             .commit-des {
                 color: $color-text;
+                text-align: justify;
             }
         }
     }
