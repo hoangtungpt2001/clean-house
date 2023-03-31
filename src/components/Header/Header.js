@@ -95,7 +95,7 @@ const Header = () => {
 
   return (
 
-    <>
+    <div className="header">
       <Container maxWidth="lg" >
       <Box>
         <AppBar component="nav" sx={{ bgcolor: "#fff" }} position="static"  elevation={0} >
@@ -117,9 +117,11 @@ const Header = () => {
                 <li>
                   <NavLink to={"/experience"}>Kinh nghiệm hay</NavLink>
                 </li>
+
                 <li>
                   <NavLink to={"/infor"}>Thông Tin Cá Nhân</NavLink>
                 </li>
+                
                 </ul>
             </Box>
             <Box sx={{display: "flex", alignItems: "center", gap: "0 10px"}}>
@@ -230,7 +232,7 @@ const Header = () => {
       </Box>
       </Container>
      
-    </>
+    </div>
   );
 };
 
