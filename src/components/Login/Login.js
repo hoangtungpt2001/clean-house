@@ -3,18 +3,19 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Person2Icon from '@mui/icons-material/Person2';
 import LockIcon from '@mui/icons-material/Lock';
-import { Link, Box, Container, OutlinedInput, InputAdornment, IconButton, FormHelperText, Alert, Snackbar } from "@mui/material";
+import { Link, Box, Container, OutlinedInput, InputAdornment, IconButton, FormHelperText,Typography, Modal } from "@mui/material";
 import StyledFormControl from '../../styles/StyledFormControl';
 import StyledButton from '../../styles/StyledButton';
-import Logo from '../../assets/images/logo.svg'
+
+import Logo from '../../assets/images/logo-final.png'
 
 
 
 import './Login.scss';
 // import { CenterFocusStrong } from '@mui/icons-material';
+import Register from '../Register/Register';
 
-
-function Login() {
+function Login(props) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -22,17 +23,13 @@ function Login() {
     const [errorPasswordEmpty, setErrorPasswordEmpty] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
     const [showPass, setShowPass] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
-    // const [open, setOpen] = useState(true);
-    //toast
-    const [state, setState] = useState({
-    open: true,
-    vertical: 'top',
-    horizontal: 'center',
-  });
-    const handleClose = () => {
-      setState({ open: false });
-    };
+
+  
+     const handleRegisterOpen = () => {
+        props.onClose();
+        props.registerOpen();
+  };
+
     //show/hide password
     const handleChangeShowPass = () => {
         setShowPass(!showPass);
@@ -45,7 +42,7 @@ function Login() {
       event.preventDefault();
     }
   }
-   
+
   const handleSubmit = (e) => {
         e.preventDefault();
         if(username === ''){
@@ -68,11 +65,12 @@ function Login() {
           setErrorPasswordEmpty(false);
           setUsername("");
           setPassword("");
-          setIsLogin(true);
+          props.onClose();
+          
         }
     }
     return (
-      
+      <>
       <Container component="main" maxWidth="xs" className='modal' >
         <Box className="modal-content">
           <Box align='center' mb={2} > 
@@ -141,19 +139,25 @@ function Login() {
               Đăng nhập
             </StyledButton>
             <Box align='center' mt={2}>
-              <Link href="#" variant="body2" underline="hover" sx={{color: "#141a46"}}>
+              <Typography  variant="body2" underline="hover" sx={{color: "#141a46", cursor: "pointer"}} onClick={handleRegisterOpen} >
                     Chưa có tài khoản? Đăng ký
-              </Link>
+              </Typography>
             </Box>
           </Box>
         </Box>
-        {isLogin && 
-        <Snackbar open={state.open} autoHideDuration={1000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}  sx={{width: '300px'}}>
-        <Alert onClose={handleClose} severity="success" color="warning" variant="filled">
-          Đăng nhập thành công!
-        </Alert>
-      </Snackbar>}
+       
+      {props.registerState &&  <Modal
+                      open={props.registerState}
+                      onClose={handleRegisterOpen}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                    >
+                      <Box>
+                          <Register />
+                      </Box>
+                    </Modal>}
       </Container>
+       </>
     );
 }
 

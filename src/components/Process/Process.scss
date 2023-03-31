@@ -1,7 +1,4 @@
-$heading-color : #353739;
-$color-subheading : #494b4c;
-$color-text : #5d5e60;
-$color-prymary: #FA8D22;
+@import '../../styles//variable.scss';
 .process {
     margin: 100px 0;
     .process-head {
@@ -9,13 +6,14 @@ $color-prymary: #FA8D22;
         color: $heading-color;
     }
     .process-item {
+        margin: 15px 0;
         .process-heading {
             display: flex;
             align-items: center;
             gap:  0 10px;
             
             .process-title{
-                color: $color-subheading;
+                color:$color-subheading;
                 font-weight: 600;
             }
         }
@@ -28,11 +26,6 @@ $color-prymary: #FA8D22;
         height: 100%;
         align-items: center;
         justify-content: center;
-        .step-content {
-            background-color: $color-prymary;
-            color: #fff;
-            padding: 50px;
-            border-radius: 100%;
-        }
+        
     }
 }
