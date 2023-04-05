@@ -79,6 +79,20 @@
         color: $color-prymary;
     }
 }
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+    &:hover {
+        color: $color-prymary;
+        background-color: transparent !important;
+    }
+    .user-menu-link {
+        display: flex;
+        align-items: center;
+        gap: 0 10px;
+    }
+}
 
 
 

@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginAction } from '../../store/actions/loginAction';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Person2Icon from '@mui/icons-material/Person2';
 import LockIcon from '@mui/icons-material/Lock';
-import { Link, Box, Container, OutlinedInput, InputAdornment, IconButton, FormHelperText,Typography, Modal } from "@mui/material";
+import { Link, Box, Container, OutlinedInput, InputAdornment, IconButton, FormHelperText,Typography, Modal, Snackbar,
+  Alert } from "@mui/material";
 import StyledFormControl from '../../styles/StyledFormControl';
 import StyledButton from '../../styles/StyledButton';
 
@@ -24,7 +27,11 @@ function Login(props) {
     const [errorPassword, setErrorPassword] = useState(false);
     const [showPass, setShowPass] = useState(false);
 
-  
+   
+
+    const dispatch = useDispatch();
+    const {isLogin, error} = useSelector((state) => state.account);
+
      const handleRegisterOpen = () => {
         props.onClose();
         props.registerOpen();
@@ -45,33 +52,52 @@ function Login(props) {
 
   const handleSubmit = (e) => {
         e.preventDefault();
+        //check username empty
         if(username === ''){
           setErrorName(true);
         } else {
           setErrorName(false);
         }
+        //check password empty
         if(password === ''){
           setErrorPasswordEmpty(true)
         } else {
           setErrorPasswordEmpty(false)
         }
+        //check password < 6
         if(username && password && password.length < 6){
             setErrorPassword(true)
           }
-      if(username && password && password.length > 6){
-          console.log('name:',username, 'pass:',password);
+         if(username && password && password.length >= 6){
           setErrorName(false);
           setErrorPassword(false);
           setErrorPasswordEmpty(false);
           setUsername("");
           setPassword("");
-          props.onClose();
           
-        }
+          dispatch(loginAction(username, password));
+      }
     }
+    const [openToast, setOpenToast] = useState(true);
+  
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+   
+    setOpenToast(false);
+  };
     return (
       <>
+        {error &&
+        <Snackbar open={openToast} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        <Alert variant="filled" color="error" onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          {error}
+        </Alert>
+      </Snackbar>
+        }
       <Container component="main" maxWidth="xs" className='modal' >
+
         <Box className="modal-content">
           <Box align='center' mb={2} > 
             <img src={Logo} alt="logo" className="logo"/>
