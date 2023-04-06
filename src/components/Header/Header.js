@@ -48,7 +48,7 @@ const Header = () => {
         const id = account.userId;
         dispatch(fecthUserById(id));
       }
-   }, [isLogin]);
+   }, [isLogin,dispatch, account.userId]);
   const handleOpenUserMenu = (event) => {
     setUserMenu(event.currentTarget);
   };
@@ -87,7 +87,7 @@ const Header = () => {
           <NavLink to={"/service"}>Dịch vụ</NavLink>
         </li>
         <li>
-          <NavLink to={"/experience"}>Kinh nghiệm hay</NavLink>
+          <NavLink to={"/experience"} >Kinh nghiệm hay</NavLink>
         </li>
       </ul>
       {!isLogin && 
@@ -149,7 +149,7 @@ const Header = () => {
                 {isLogin === true &&
                 <Box>
                     <Box onClick={handleOpenUserMenu} className="user-account" >
-                      <Avatar alt="Vo Dien"  src={user.avatar} sx={{ bgcolor: "#FA8D22" }} />
+                      <Avatar alt="user"  src={user.avatar} sx={{ bgcolor: "#FA8D22" }} />
                       <Typography className="user-name" sx={{ display: { xs: "none", sm: "block" } }}>
                         {user.firstName} {user.lastName}
                         </Typography>

@@ -13,10 +13,11 @@ import Pagenotfound from "./pages/Pagenotfound";
 import GoToTop from "./components/GoToTop/GoToTop";
 import './App.scss';
 import InFor from "./pages/InFor";
+import ExperienceDetail from "./pages/ExperienceDetail";
 
 
 
-
+import ArticleList from "./components/ArticleList/ArticleList";
 function App() {
   const {isLogin} = useSelector((state) => state.account);
   const [openToast, setOpenToast] = useState(true);
@@ -28,12 +29,19 @@ function App() {
     setOpenToast(false);
   };
   return (
-    <div >
+    <div className="app" >
       <BrowserRouter>
         <Routes>
           <Route path="/" element = {<Home />}/>
           <Route path="/service" element = {<Services />}/>
-          <Route path="/experience" element = {<Experience />}/>
+          <Route path="/experience/" end  element = {<Experience />}>
+            <Route path="" element = {<ArticleList />}/>
+            <Route path="clean-up" element = {<ArticleList categoryId='1' />}/>
+            <Route path="go-market" element = {<ArticleList categoryId='3' />}/>
+            <Route path="cook" element = {<ArticleList categoryId='2' />}/>
+            <Route path="laundry" element = {<ArticleList categoryId='4' />}/>
+          </Route>
+          <Route path="/experience/:articleName" element = {<ExperienceDetail />}/>
           <Route path="/user-infor" element = {<InFor/>}/>
           <Route path="*" element = {<Pagenotfound />}/>
         </Routes>

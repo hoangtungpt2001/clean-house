@@ -4,7 +4,7 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import Layout from '../components/layout/Layout';
 import Process from '../components/Process/Process';
-import Footer from '../components/Footer/Footer';
+
 import Commitment from '../components/Commitment/Commitment';
 import Conveniences from '../components/Conveniences/Conveniences';
 // import "../styles/Paper.css";
@@ -55,7 +55,6 @@ const Home = () => {
     <Conveniences />
     <Commitment />
     <Process/>
-    <Footer/>
         
     </Layout>
   )
