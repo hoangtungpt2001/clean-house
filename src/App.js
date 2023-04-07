@@ -1,12 +1,15 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+<
 import React, { useState } from "react";
 import { useSelector } from 'react-redux';
 import {
   Snackbar,
   Alert 
 } from "@mui/material";
-import Services from "./pages/Service";
+
+import Services from "./pages/service/Service";
+
 import Experience from "./pages/Experience";
 import Home from "./pages/Home";
 import Pagenotfound from "./pages/Pagenotfound";
