@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { Logout } from "../../store/slices/accSlice";
+import { fecthUserById } from "../../store/actions/getUserAction";
 import {
   AppBar,
   Box,
@@ -16,19 +19,36 @@ import {
 } from "@mui/material";
 import { NavLink, Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import LogoutIcon from '@mui/icons-material/Logout';
+import HistoryIcon from '@mui/icons-material/History';
+import PersonIcon from '@mui/icons-material/Person';
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import StyledButton from "../../styles/StyledButton";
 import Logo from "../../assets/images/logo-final.png";
 import './Header.scss';
-const settings = ['Thông tin cá nhân', 'Lịch sử đăng ký', 'Đăng xuất'];
 
+ 
 const Header = () => {
+    
+
     const [mobileOpen, setMobileOpen] = useState(false);
     const [loginOpen, setLoginOpen] = useState(false);
     const [registerOpen, setRegisterOpen] = useState(false);
     const [userMenu, setUserMenu] = useState(null);
 
+    const dispatch = useDispatch();
+    const {isLogin, account} = useSelector((state) => state.account);
+    const { user } = useSelector(state => state.user);
+    
+    useEffect(() => {
+      setUserMenu(null);
+      setLoginOpen(false);
+      if(isLogin === true) {
+        const id = account.userId;
+        dispatch(fecthUserById(id));
+      }
+   }, [isLogin,dispatch, account.userId]);
   const handleOpenUserMenu = (event) => {
     setUserMenu(event.currentTarget);
   };
@@ -47,6 +67,10 @@ const Header = () => {
   const tongleModalRegister = () => {
     setRegisterOpen(!registerOpen);
   };
+  const handleLogout = () => {
+    dispatch(Logout());
+  };
+  
   const drawer = (
     <Box onClick={handleDrawerToggle} className="mobile">
       <Box mb={1}>
@@ -63,9 +87,10 @@ const Header = () => {
           <NavLink to={"/service"}>Dịch vụ</NavLink>
         </li>
         <li>
-          <NavLink to={"/experience"}>Kinh nghiệm hay</NavLink>
+          <NavLink to={"/experience"} >Kinh nghiệm hay</NavLink>
         </li>
       </ul>
+      {!isLogin && 
        <Box className="auth-action">
                 <Button onClick={tongleModalRegister} variant="text" className="btn-text" >ĐĂNG KÝ</Button>
                 <StyledButton variant="contained" onClick={tongleModalLogin} >ĐĂNG NHẬP</StyledButton>
@@ -89,10 +114,11 @@ const Header = () => {
                           <Register />
                       </Box>
                     </Modal>
-              </Box>
+        </Box>
+      }
     </Box>
   );
-
+     
   return (
 
     <div className="header">
@@ -117,18 +143,16 @@ const Header = () => {
                 <li>
                   <NavLink to={"/experience"}>Kinh nghiệm hay</NavLink>
                 </li>
-
-                <li>
-                  <NavLink to={"/infor"}>Thông Tin Cá Nhân</NavLink>
-                </li>
-                
                 </ul>
             </Box>
             <Box sx={{display: "flex", alignItems: "center", gap: "0 10px"}}>
-                {/* <Box>
+                {isLogin === true &&
+                <Box>
                     <Box onClick={handleOpenUserMenu} className="user-account" >
-                      <Avatar alt="Vo Dien"  src="" sx={{ bgcolor: "#FA8D22" }} />
-                      <Typography className="user-name">Vô Diện</Typography>
+                      <Avatar alt="user"  src={user.avatar} sx={{ bgcolor: "#FA8D22" }} />
+                      <Typography className="user-name" sx={{ display: { xs: "none", sm: "block" } }}>
+                        {user.firstName} {user.lastName}
+                        </Typography>
                     </Box>
                   <Menu
                     sx={{ mt: '45px' }}
@@ -155,23 +179,32 @@ const Header = () => {
                         display: 'block',
                         position: 'absolute',
                         top: 0,
-                        right: '50%',
+                        right: '15px',
                         width: 10,
                         height: 10,
                         bgcolor: 'background.paper',
-                        transform: 'translate(-50%, -50%)  rotate(45deg)',
+                        transform: 'translateY(-50%)  rotate(45deg)',
                         zIndex: 0,
                       },
                     },
                   }}
                   >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign="center">{setting}</Typography>
+                    <MenuItem className="user-menu">
+                      <NavLink to="/user-infor" className="user-menu-link" >
+                        <PersonIcon/> Thông tin cá nhân 
+                      </NavLink>
                     </MenuItem>
-                  ))}
+                     <MenuItem className="user-menu" >
+                      <NavLink to=""  className="user-menu-link">
+                       <HistoryIcon/> Lịch sử đăng ký
+                      </NavLink>
+                    </MenuItem>
+                    <MenuItem onClick={handleLogout} className="user-menu" >
+                         <LogoutIcon/> Đăng xuất
+                    </MenuItem>
                   </Menu>
-                </Box> */}
+                </Box>
+                }
                 <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -184,6 +217,7 @@ const Header = () => {
                 <MenuIcon />
                 </IconButton>
               </Box>
+            {!isLogin && 
             <Box sx={{ display: { xs: "none", md: "block" }}} >
               <Box className="auth-action">
                 <Button onClick={tongleModalRegister} variant="text" className="btn-text" >ĐĂNG KÝ</Button>
@@ -209,7 +243,8 @@ const Header = () => {
                       </Box>
                     </Modal>
               </Box>
-              </Box>
+            </Box>
+            }
               
           </Toolbar>
         </AppBar>
