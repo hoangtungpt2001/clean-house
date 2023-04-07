@@ -1,0 +1,41 @@
+@import '../../styles/variable.scss';
+.article-detail {
+    margin: 50px 0;
+    .article-heading {
+        color: $color-prymary;
+        font-weight: 600;
+    }
+    .article-info {
+        display: flex;
+        align-items: center;
+        gap:  0 30px;
+        margin: 15px 0;
+        color: $color-text;
+        
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 0 10px;
+        }
+    }
+
+    .article-content {
+        // width: 70%;
+        // margin:  0 auto;
+        .article-subtitle{
+            color: $color-prymary;
+            padding: 15px 0;
+        }
+        .article-text {
+            color: $color-subheading;
+            padding-bottom: 36px;
+            text-align: justify;
+        }
+        .content-img {
+            width: 100%;
+        }
+    }
+}
+.icon {
+    font-size: 60px !important;  
+}

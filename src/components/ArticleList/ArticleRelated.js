@@ -1,65 +1,39 @@
-import React,{ useState, useEffect } from 'react';
+import React,{ useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
 import { fecthArticles } from '../../store/actions/getArrticlesAction'; 
 import { fecthAllUser } from '../../store/actions/getUserAction';
-import {Box, Typography, Grid, Avatar,Button, Pagination } from "@mui/material";
+import {Box, Typography, Grid, Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import AddIcon from '@mui/icons-material/Add';
+
 import "./ArticleList.scss";
 
 
 
-const ArticleList = ({ categoryId }) => {
+const ArticleRelated= () => {
+    const { articleName } = useParams();
     const dispatch = useDispatch();
     const { articles } = useSelector(state => state.articles);
     const { users } = useSelector(state => state.users);
-    const { isLogin, account } = useSelector(state => state.account);
     useEffect(() => {
         dispatch(fecthArticles());
         dispatch(fecthAllUser());
     }, []);
 
-    
-
+    const article = articles.find((article) => article.title === articleName);
+    const categoryId = article.categoryId;
     const filteredArticles = categoryId
-    ? articles.filter((article) => article.categoryId === parseInt(categoryId))
-    : articles;
-   
-    const articlesPerPage = 6;
-    const numPages = Math.ceil(filteredArticles.length / articlesPerPage);
-    // Khởi tạo state để lưu trang hiện tại
-    const [currentPage, setCurrentPage] = useState(1);
-
-    // Tính toán index của các sản phẩm cần hiển thị trên trang hiện tại
-    const startIndex = (currentPage - 1) * articlesPerPage;
-    const endIndex = startIndex + articlesPerPage;
-     const displayedArticles = filteredArticles.slice(startIndex, endIndex);
-
+    ? articles.filter((article) => article.categoryId === categoryId)
+    : [];
     
     return (
         <>
-        {isLogin && account.roleId === 3 &&
-        <Box textAlign={'right'} mb={3}>
-            <Link to="" >
-            <Button variant="outlined" sx={{
-                color: "#FA8D22",
-                 borderColor: "#FA8D22",
-                 ":hover": {
-                    borderColor: "#FA8D22",
-                    backgroundColor: "rgba(250, 141, 34, 0.1)"
-                 }
-                 }}>
-                <AddIcon/>
-                Viết bài</Button>
-            </Link>
-        </Box>
-        }
-        <Grid container spacing={2}>
-            {displayedArticles && displayedArticles.map((article)=>{
+        <Typography variant="h3" component="h1" >Bài viết liên quan</Typography>
+        <Grid container spacing={3} mt={"15px"} mb={"100px"}>
+            {filteredArticles && filteredArticles.map((article)=>{
                 const user = users.find((user) => user.id === article.userId)
                 return (
-              
                 <Grid item xs={12} sm={6} md={4} className="article" key={article.id}>
                     <Box component="div" className="article-item">
                         <Box className="article-img" textAlign="center" pt={2} height={200}>
@@ -102,17 +76,8 @@ const ArticleList = ({ categoryId }) => {
             })}
            
         </Grid>
-        <Box mt={3}>
-         <Pagination count={numPages} page={currentPage} onChange={(event, page) => setCurrentPage(page)} size="large" 
-         defaultPage={1} 
-            sx={{
-                ".MuiPagination-ul" : {
-                    justifyContent: 'center'
-                },
-            }}
-         />
-        </Box>
+       
         </>
     )
 }
-export default ArticleList;
+export default ArticleRelated;
