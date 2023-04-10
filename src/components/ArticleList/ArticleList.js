@@ -41,7 +41,7 @@ const ArticleList = ({ categoryId }) => {
         <>
         {isLogin && account.roleId === 3 &&
         <Box textAlign={'right'} mb={3}>
-            <Link to="" >
+            <Link to={"/new-experience"} >
             <Button variant="outlined" sx={{
                 color: "#FA8D22",
                  borderColor: "#FA8D22",

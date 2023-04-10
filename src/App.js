@@ -1,6 +1,5 @@
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-<
 import React, { useState } from "react";
 import { useSelector } from 'react-redux';
 import {
@@ -17,6 +16,7 @@ import GoToTop from "./components/GoToTop/GoToTop";
 import './App.scss';
 import InFor from "./pages/InFor";
 import ExperienceDetail from "./pages/ExperienceDetail";
+import NewExperience from "./pages/NewExperience";
 
 
 
@@ -46,6 +46,7 @@ function App() {
           </Route>
           <Route path="/experience/:articleName" element = {<ExperienceDetail />}/>
           <Route path="/user-infor" element = {<InFor/>}/>
+          <Route path="/new-experience" element = {<NewExperience/>}/>
           <Route path="*" element = {<Pagenotfound />}/>
         </Routes>
       </BrowserRouter>
