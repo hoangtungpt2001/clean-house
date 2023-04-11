@@ -20,7 +20,7 @@ const ArticleDetail = () => {
     useEffect(() => {
         dispatch(fecthArticles());
         dispatch(fecthAllUser());
-    }, []);
+    }, [dispatch]);
     const article = articles.find((article) => article.title === articleName);
     // console.log('check: ',article )
     const user = users.find((user) => user.id === article.userId)
@@ -29,7 +29,7 @@ const ArticleDetail = () => {
     }
   return (
     <>
-     {isLogin && (
+     {/* {isLogin && ( */}
         <IconButton onClick={handleLikeClick}  sx={{
             position: 'fixed',
             bottom: {xs: "50%" , md: "50%"},
@@ -41,7 +41,7 @@ const ArticleDetail = () => {
         }} >
            {isLiked ?  <FavoriteIcon className='icon'/> : <FavoriteBorderIcon className='icon' />}
         </IconButton>
-      )}
+      {/* )} */}
  
     {article && 
       <Box className="article-detail">

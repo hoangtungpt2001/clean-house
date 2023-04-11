@@ -1,0 +1,10 @@
+.info {
+    display: flex;
+    align-items: center;
+    gap: 0 100px;
+    .author,.date {
+        display: flex;
+        align-items: center;
+        gap: 0 10px;
+    }
+}

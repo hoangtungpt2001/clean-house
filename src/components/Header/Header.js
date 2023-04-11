@@ -195,7 +195,7 @@ const Header = () => {
                       </NavLink>
                     </MenuItem>
                      <MenuItem className="user-menu" >
-                      <NavLink to=""  className="user-menu-link">
+                      <NavLink to={"/history"}  className="user-menu-link">
                        <HistoryIcon/> Lịch sử đăng ký
                       </NavLink>
                     </MenuItem>
