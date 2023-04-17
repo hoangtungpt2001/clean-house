@@ -18,6 +18,9 @@ import InFor from "./pages/InFor";
 import ExperienceDetail from "./pages/ExperienceDetail";
 import NewExperience from "./pages/NewExperience";
 import History from "./pages/History";
+import PrivacyPolicy from "./pages/privacyPolicy";
+import TermsOfUse from "./pages/termsOfUse";
+import Introduce from "./pages/Introduce";
 
 
 
@@ -49,6 +52,9 @@ function App() {
           <Route path="/user-infor" element = {<InFor/>}/>
           <Route path="/new-experience" element = {<NewExperience/>}/>
           <Route path="/history" element = {<History/>}/>
+          <Route path="/privacy-policy" element = {<PrivacyPolicy/>}/>
+          <Route path="/terms-of-use" element = {<TermsOfUse/>}/>
+          <Route path="/introduce" element = {<Introduce/>}/>
           <Route path="*" element = {<Pagenotfound />}/>
         </Routes>
       </BrowserRouter>

@@ -1,28 +1,28 @@
-@import '../../styles/variable.scss';
+@import "../../styles/variable.scss";
 .footer {
-    background: rgb(97, 96, 96);
-    background: linear-gradient(90deg, rgba(97, 96, 96, 1) 50%, rgba(204, 203, 203, 1) 100%);
-    .footer-content {
-        padding: 50px 0;
-            .logo {
-                width: 70%;
-                padding-bottom: 50px;
-            }
-        .footer-heading {
-            font-weight: 600;
-            color: $color-prymary;
-        }
-        .footer-link {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap:  15px 0;
-            a {
-                color: #fff;
-                &:hover{
-                    color: $color-prymary;
-                }
-            }
-        }
+  background: #eeeeee;
+  .footer-content {
+    padding: 50px 0;
+    .logo {
+      width: 70%;
+      padding-bottom: 50px;
     }
+    .footer-heading {
+      font-weight: 600;
+      color: $color-prymary;
+    }
+    .footer-link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 15px 0;
+      a {
+        color: $color-text;
+        transition: 0.5;
+        &:hover {
+          color: $color-prymary;
+        }
+      }
+    }
+  }
 }

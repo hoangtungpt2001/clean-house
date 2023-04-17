@@ -39,7 +39,7 @@ const Commitment = () => {
                 <Typography variant="h4" component="h2" mb={4} className="commit-head">
                      Cam kết chất lượng dịch vụ
                 </Typography>
-                <Grid container columnSpacing={2} rowSpacing={4} alignItems="stretch" display="flex">
+                <Grid container columnSpacing={2} rowSpacing={4}>
                      {items.map((item, index) => (
                         <Grid key={index} item xs={12} sm={6} md={3}>
                             <Box component="div" className="commit-item">
@@ -47,12 +47,12 @@ const Commitment = () => {
                              <img src={item.image} alt="time" />
                             </Box>
                             <Box className="commit-content" p={2}> 
-                            <Typography variant="h5" component="h3" className="commit-title" pb={1}>
-                                {item.name}
-                            </Typography>
-                            <Typography variant="body1" component="p" className="commit-des" >
-                                {item.description}
-                            </Typography>
+                              <Typography variant="h5" component="h3" className="commit-title" pb={1}>
+                                  {item.name}
+                              </Typography>
+                              <Typography variant="body1" component="p" className="commit-des" >
+                                  {item.description}
+                              </Typography>
                             </Box>
                             </Box>
                         </Grid>
