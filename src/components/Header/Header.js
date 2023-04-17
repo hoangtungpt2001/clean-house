@@ -121,7 +121,7 @@ const Header = () => {
      
   return (
 
-    <div className="header">
+    <header className="header">
       <Container maxWidth="lg" >
       <Box>
         <AppBar component="nav" sx={{ bgcolor: "#fff" }} position="static"  elevation={0} >
@@ -267,7 +267,7 @@ const Header = () => {
       </Box>
       </Container>
      
-    </div>
+    </header>
   );
 };
 

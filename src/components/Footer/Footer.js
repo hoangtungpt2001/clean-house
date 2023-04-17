@@ -13,25 +13,25 @@ const Footer = () => {
     return (
         <footer className="footer">
             <Container maxWidth="lg" >
-                <Grid container rowSpacing={1} columnSpacing={1} className="footer-content" >
+                <Grid container rowSpacing={1} columnSpacing={1} className="footer-content" sx={{textAlign: {xs: "center", sm: "left"}}} >
                     <Grid item xs={12} sm={4} md={4} >
                         <Box>
                                 <Link to={"/"}><img src={logo} alt="logo" className="logo" /></Link>  
                         </Box>
                     </Grid>
-                    <Grid item xs={12} sm={4} md={4} >
-                       <Typography variant="h6" component="h5" mb={2} className="footer-heading">
+                    <Grid item xs={12} sm={4} md={4}  >
+                       <Typography variant="h6" component="h5" mb={2} className="footer-heading" >
                         Về chúng tôi
                        </Typography>
                        <ul className="footer-link">
                         <li>
-                            <Link to={'/'}>Giới thiệu</Link>
+                            <Link to={'/introduce'}>Giới thiệu</Link>
                         </li>
                         <li>
-                            <Link to={'/'}>Điều khoản sử dụng</Link>
+                            <Link to={'/terms-of-use'}>Điều khoản sử dụng</Link>
                         </li>
                         <li>
-                            <Link to={'/'}>Chính sách bảo mật</Link>
+                            <Link to={'/privacy-policy'}>Chính sách bảo mật</Link>
                         </li>
                        </ul>
                     </Grid>
@@ -51,6 +51,9 @@ const Footer = () => {
                         </li>
                         <li>
                             <Link to={'/'}>Nấu ăn gia đình</Link>
+                        </li>
+                        <li>
+                            <Link to={'/'}>Giặt ủi</Link>
                         </li>
                        </ul>
                     </Grid>
