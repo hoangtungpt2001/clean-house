@@ -96,7 +96,7 @@ function Login(props) {
         </Alert>
       </Snackbar>
         }
-      <Container component="main" maxWidth="xs" className='modal' >
+      <Container component="main" maxWidth="xs" className='modal-login' >
 
         <Box className="modal-content">
           <Box align='center' mb={2} > 
