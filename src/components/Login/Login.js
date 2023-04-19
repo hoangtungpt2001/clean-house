@@ -65,7 +65,7 @@ function Login(props) {
         } else {
           setErrorPasswordEmpty(false)
         }
-         if(username.length < 6 || username.length > 30){
+         if(username.lenght > 0 && (username.length < 6 || username.length > 30)){
             setErrorNameLen(true)
           }
         //check password < 6
