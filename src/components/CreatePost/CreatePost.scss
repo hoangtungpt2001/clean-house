@@ -1,0 +1,48 @@
+@import '../../styles/variable.scss';
+
+.info {
+    display: flex;
+    align-items: center;
+    gap: 0 100px;
+    .author {
+        .user-name {
+            color: $color-text;
+        }
+    }
+    .date {
+        .date-text {
+            color: $color-text;
+        }
+    }
+    .author, .date {
+        display: flex;
+        align-items: center;
+        gap: 0 10px;
+    }
+
+}
+.category {
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+}
+
+.image {
+    .image_url {
+        margin: 15px 0;
+        padding: 8px 10px;
+        border-radius: 50px;
+        transition: 0.5s;
+        width: 100%;
+        border: 1px solid #c6c7cb;
+        &:active, &:focus {
+            border: 1px solid $color-prymary;
+        }
+    }
+    .image_view {
+        display: block;
+        margin: 0 auto;
+        color: #fff;
+    }
+}
+

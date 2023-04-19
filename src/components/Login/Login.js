@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../store/actions/loginAction';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -15,7 +15,7 @@ import Logo from '../../assets/images/logo-final.png'
 
 
 import './Login.scss';
-// import { CenterFocusStrong } from '@mui/icons-material';
+
 import Register from '../Register/Register';
 
 function Login(props) {
@@ -26,11 +26,11 @@ function Login(props) {
     const [errorPasswordEmpty, setErrorPasswordEmpty] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
     const [showPass, setShowPass] = useState(false);
-
+    const [openToast, setOpenToast] = useState(true);
    
 
     const dispatch = useDispatch();
-    const {isLogin, error} = useSelector((state) => state.account);
+    const {error} = useSelector((state) => state.account);
 
      const handleRegisterOpen = () => {
         props.onClose();
@@ -68,7 +68,11 @@ function Login(props) {
         if(username && password && password.length < 6){
             setErrorPassword(true)
           }
+        
          if(username && password && password.length >= 6){
+          if(error){
+          setOpenToast(true)
+        }
           setErrorName(false);
           setErrorPassword(false);
           setErrorPasswordEmpty(false);
@@ -78,7 +82,7 @@ function Login(props) {
           dispatch(loginAction(username, password));
       }
     }
-    const [openToast, setOpenToast] = useState(true);
+    
   
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -89,6 +93,7 @@ function Login(props) {
   };
     return (
       <>
+
         {error &&
         <Snackbar open={openToast} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
         <Alert variant="filled" color="error" onClose={handleClose} severity="error" sx={{ width: '100%' }}>
@@ -97,6 +102,12 @@ function Login(props) {
       </Snackbar>
         }
       <Container component="main" maxWidth="xs" className='modal-login' >
+
+     
+       
+ 
+      
+
 
         <Box className="modal-content">
           <Box align='center' mb={2} > 
@@ -182,6 +193,13 @@ function Login(props) {
                           <Register />
                       </Box>
                     </Modal>}
+        {error && 
+         <Snackbar open={openToast} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        <Alert variant="filled" color="error" onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          Vui lòng nhập lại!
+        </Alert>
+      </Snackbar>
+        }
       </Container>
        </>
     );

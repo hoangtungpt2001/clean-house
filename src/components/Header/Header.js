@@ -121,7 +121,7 @@ const Header = () => {
      
   return (
 
-    <div className="header">
+    <header className="header">
       <Container maxWidth="lg" >
       <Box>
         <AppBar component="nav" sx={{ bgcolor: "#fff" }} position="static"  elevation={0} >
@@ -195,7 +195,7 @@ const Header = () => {
                       </NavLink>
                     </MenuItem>
                      <MenuItem className="user-menu" >
-                      <NavLink to=""  className="user-menu-link">
+                      <NavLink to={"/history"}  className="user-menu-link">
                        <HistoryIcon/> Lịch sử đăng ký
                       </NavLink>
                     </MenuItem>
@@ -267,7 +267,7 @@ const Header = () => {
       </Box>
       </Container>
      
-    </div>
+    </header>
   );
 };
 

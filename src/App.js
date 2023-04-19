@@ -13,6 +13,11 @@ import GoToTop from "./components/GoToTop/GoToTop";
 import "./App.scss";
 import InFor from "./pages/InFor";
 import ExperienceDetail from "./pages/ExperienceDetail";
+import NewExperience from "./pages/NewExperience";
+import History from "./pages/History";
+import PrivacyPolicy from "./pages/privacyPolicy";
+import TermsOfUse from "./pages/termsOfUse";
+import Introduce from "./pages/Introduce";
 
 import ArticleList from "./components/ArticleList/ArticleList";
 import Detail from "./pages/service/Detail";
@@ -40,12 +45,16 @@ function App() {
             <Route path="cook" element={<ArticleList categoryId="2" />} />
             <Route path="laundry" element={<ArticleList categoryId="4" />} />
           </Route>
-          <Route
-            path="/experience/:articleName"
-            element={<ExperienceDetail />}
-          />
-          <Route path="/user-infor" element={<InFor />} />
-          <Route path="*" element={<Pagenotfound />} />
+
+          <Route path="/experience/:articleName" element = {<ExperienceDetail />}/>
+          <Route path="/user-infor" element = {<InFor/>}/>
+          <Route path="/new-experience" element = {<NewExperience/>}/>
+          <Route path="/history" element = {<History/>}/>
+          <Route path="/privacy-policy" element = {<PrivacyPolicy/>}/>
+          <Route path="/terms-of-use" element = {<TermsOfUse/>}/>
+          <Route path="/introduce" element = {<Introduce/>}/>
+          <Route path="*" element = {<Pagenotfound />}/>
+
         </Routes>
       </BrowserRouter>
       <GoToTop />

@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fecthArticles } from '../../store/actions/getArrticlesAction'; 
+import { fecthArticles,fecthLikes } from '../../store/actions/arrticlesAction'; 
 import { fecthAllUser } from '../../store/actions/getUserAction';
 import {Box, Typography, Grid, Avatar,Button, Pagination } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -12,16 +12,16 @@ import "./ArticleList.scss";
 
 const ArticleList = ({ categoryId }) => {
     const dispatch = useDispatch();
-    const { articles } = useSelector(state => state.articles);
+    const { articles, likes } = useSelector(state => state.articles);
     const { users } = useSelector(state => state.users);
     const { isLogin, account } = useSelector(state => state.account);
+  
     useEffect(() => {
         dispatch(fecthArticles());
+        dispatch(fecthLikes());
         dispatch(fecthAllUser());
-    }, []);
-
-    
-
+    }, [dispatch]);
+ 
     const filteredArticles = categoryId
     ? articles.filter((article) => article.categoryId === parseInt(categoryId))
     : articles;
@@ -34,14 +34,15 @@ const ArticleList = ({ categoryId }) => {
     // Tính toán index của các sản phẩm cần hiển thị trên trang hiện tại
     const startIndex = (currentPage - 1) * articlesPerPage;
     const endIndex = startIndex + articlesPerPage;
-     const displayedArticles = filteredArticles.slice(startIndex, endIndex);
-
+    const displayedArticles = filteredArticles.slice(startIndex, endIndex);
+    // console.log('check like: ', likes);
+  
     
     return (
         <>
         {isLogin && account.roleId === 3 &&
         <Box textAlign={'right'} mb={3}>
-            <Link to="" >
+            <Link to={"/new-experience"} >
             <Button variant="outlined" sx={{
                 color: "#FA8D22",
                  borderColor: "#FA8D22",
@@ -56,8 +57,9 @@ const ArticleList = ({ categoryId }) => {
         </Box>
         }
         <Grid container spacing={2}>
-            {displayedArticles && displayedArticles.map((article)=>{
+            {displayedArticles && displayedArticles.length > 0 && displayedArticles.map((article)=>{
                 const user = users.find((user) => user.id === article.userId)
+               
                 return (
               
                 <Grid item xs={12} sm={6} md={4} className="article" key={article.id}>
@@ -91,7 +93,8 @@ const ArticleList = ({ categoryId }) => {
                             <Box className="article-rate" >
                                 <FavoriteIcon sx={{color: "red"}} /> 
                                 <Typography variant="body1" component="p" className="article-rate-detail" >
-                                {article.likes}
+                                  
+                                {likes.filter(like => like.articleId === article.id).length}
                                 </Typography>
                             </Box>
                         </Box>

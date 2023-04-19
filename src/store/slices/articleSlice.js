@@ -3,23 +3,27 @@ export const articleSlice= createSlice({
     name: "articles",
     initialState: {
         articles: [],
-        isLoading: false,
-        error: null,
+        likes: []
     },
     reducers: {
-        getArticleLoading: (state) => {
-            state.isLoading = true;
-        },
-        getArticleSuccess: (state, action) => {
-            state.isLoading = false;
+        getArticle: (state, action) => {
             state.articles = action.payload;
-        },//=>{type: 'user/LoginSucces}
-        getArticleFailed: (state, action) => {
-            state.isLoading = false;
-            state.error= action.payload;
+        },
+        addPost: (state, action) => {
+        state.articles.push(action.payload);
+        },
+        getLike: (state, action) => {
+            state.likes= action.payload;
+        },
+        addLike: (state, action) => {
+            state.likes.push(action.payload)
+        },
+        removeLike: (state, action) => {
+            state.likes = state.likes.filter(like => like.articleId !== action.payload.articleId || like.userId !== action.payload.userId)
+        }
         }
     }
-})
-export const { getArticleLoading, getArticleSuccess, getArticleFailed } = articleSlice.actions
+)
+export const { getArticle, addPost, getLike, addLike,  removeLike } = articleSlice.actions
 
 export default articleSlice.reducer
