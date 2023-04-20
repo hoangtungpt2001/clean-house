@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Button1 from '../../components/button/Button1'
-import Button2 from '../../components/button/Button2'
+import React,{ useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Loading1 from '../../components/Loading/Loading'
 import { NavLink } from 'react-router-dom'
 
@@ -12,7 +11,7 @@ const Personnel = () => {
     const [filter, setFilter] = useState(data)
     const [loading, setLoading] = useState(false)
     let componentMounted = true;
-
+  
     useEffect(() => {
       const getPersonnels = async () => {
         setLoading(true)
