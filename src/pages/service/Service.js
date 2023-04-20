@@ -17,15 +17,7 @@ const Services = () => {
   
   return (
     <Layout>
-      {/* <h1>vui lòng chọn dịch vụ</h1>
-      {arrService.map(item => {
-        return(
-            <button onClick={() => setService(item)}>DV vệ sinh nhà ở</button>
-        )
-      })}
-      {service === 'HouseCleaningService' && <HouseCleaningService />}
-      {service === 'OfficeCleaningService' && <OfficeCleaningService />}
-      {service === 'GardenCleaningService' && <GardenCleaningService />}  */}
+      
         <BasicTabs/>
     </Layout>
   );

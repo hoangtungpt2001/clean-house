@@ -98,10 +98,21 @@ function Login(props) {
   };
     return (
       <>
+
+        {error &&
+        <Snackbar open={openToast} autoHideDuration={2000} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+        <Alert variant="filled" color="error" onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          {error}
+        </Alert>
+      </Snackbar>
+        }
+      <Container component="main" maxWidth="xs" className='modal-login' >
+
      
        
  
-      <Container component="main" maxWidth="xs" className='modal' >
+      
+
 
         <Box className="modal-content">
           <Box align='center' mb={2} > 
