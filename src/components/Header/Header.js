@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Logout } from "../../store/slices/accSlice";
-import { fecthUserById } from "../../store/actions/getUserAction";
+import { fecthUserById, fetchRoles, fecthAllUser } from "../../store/actions/getUserAction";
 import {
   AppBar,
   Box,
@@ -47,6 +48,8 @@ const Header = () => {
       if(isLogin === true) {
         const id = account.userId;
         dispatch(fecthUserById(id));
+        dispatch(fetchRoles());
+        dispatch(fecthAllUser());
       }
    }, [isLogin,dispatch, account.userId]);
   const handleOpenUserMenu = (event) => {
@@ -67,8 +70,11 @@ const Header = () => {
   const tongleModalRegister = () => {
     setRegisterOpen(!registerOpen);
   };
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(Logout());
+    
+    navigate('/');
   };
   
   const drawer = (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Container, Typography} from "@mui/material";
 import Layout from '../components/layout/Layout';
 import CreatePost from '../components/CreatePost/CreatePost';

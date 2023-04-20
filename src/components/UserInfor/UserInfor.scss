@@ -1,0 +1,116 @@
+@import '../../styles/variable.scss';
+.user {
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 30px 0;
+        flex-direction: column;
+        .user-avatar {
+            width: 200px;
+            height: 200px;
+        }
+        .user-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px 0;
+            align-items: center;
+            .user-name {
+                color: $color-prymary;
+                font-weight: 600;
+            }
+            .user-role {
+                color: $color-subheading;
+            }
+        }
+    }
+    .user-detail {
+        .user-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            .user-button {
+                flex: 1;
+                color: $color-prymary;
+            }
+            .active {
+                background-color: rgba(250, 141, 34, 0.1);
+                border-bottom: 1px solid $color-prymary;
+            }
+        }
+        .user-content {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px 0;
+            .user-item {
+                display: flex;
+                align-items: center;
+                .user-title {
+                    width: 120px;
+                    color: $color-menu;
+                }
+                .user-value {
+                    color: $color-subheading;
+                }
+              
+            }
+        }
+        .user-edit {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px 0;
+            .user-input{
+                display: flex;
+                align-items: center;
+                gap:  0 30px;
+                
+                .input-label {
+                    width: 120px;
+                }
+                .input-image {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px 0;
+                    .input-link {
+                        
+                    }
+                    .image_view {
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+            }
+        }
+        .service {
+            .service-content {
+                margin-top: 50px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px 0;
+                .service-heading {
+                    color: $color-prymary;
+                    font-weight: 600;
+                }
+                .service-item {
+                    display: flex;
+                    align-items: center;
+                    .service-title {
+                        width: 170px;
+                        flex-shrink: 0;
+                        color: $color-menu;
+                    }
+                    .service-value {
+                        flex: 1;
+                        color: $color-subheading;
+                    }
+                }
+                .service-button {
+                    display: flex;
+                    align-items: center;
+                    gap:  0 100px;
+                }
+            }
+        }
+    }
+}

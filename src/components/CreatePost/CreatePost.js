@@ -99,7 +99,7 @@ const CreatePost = () => {
         <Box component="form" onSubmit={handleSubmit} noValidate autoComplete='off' mb={"50px"}>
             <Box className="info" mb={4} sx={{display: { xs: "block", md: "flex"}}}>
             <Box className="author" sx={{mb: { xs: "30px", md: "0px"}}}>
-                <Typography variant="body1" component="h3" sx={{ color:"#fa8d22", fontWeight: "bold" }}>
+                <Typography variant="body1" component="h3" sx={{ color:"#494b4c", fontWeight: "bold" }}>
                     Tác giả:
                 </Typography>
                 <Avatar alt="user"  src={user.avatar} sx={{ bgcolor: "#FA8D22" }} />
@@ -108,7 +108,7 @@ const CreatePost = () => {
                 </Typography>
             </Box>
             <Box className="date"  >
-                <Typography  variant="body1" component="h3" sx={{ color:"#fa8d22", fontWeight: "bold" }}>
+                <Typography  variant="body1" component="h3" sx={{ color:"#494b4c", fontWeight: "bold" }}>
                     Thời gian: 
                 </Typography>
                 <Typography className="date-text" >
@@ -127,7 +127,7 @@ const CreatePost = () => {
                 />
             </StyledFormControl>
         <Box className='category' mt={4}>
-       <Typography variant="body1" component="h3" sx={{ color:"#fa8d22", fontWeight: "bold" }}>
+       <Typography variant="body1" component="h3" sx={{ color:"#494b4c", fontWeight: "bold" }}>
                     Loại bài viết: 
         </Typography>
         <StyledFormControl sx={{ minWidth: 270 }}>
@@ -154,7 +154,7 @@ const CreatePost = () => {
          </StyledFormControl>    
         </Box>
         <Box className="image" mt={4}>
-             <Typography variant="body1" component="h3" sx={{ color:"#fa8d22", fontWeight: "bold" }}>
+             <Typography variant="body1" component="h3" sx={{ color:"#494b4c", fontWeight: "bold" }}>
                     Hình ảnh minh họa: 
                 </Typography>
             <Box>
@@ -162,7 +162,7 @@ const CreatePost = () => {
             <img src={imageUrl} alt="" className='image_view' />
             </Box>
         </Box>
-            <Typography mt={4} variant="h5" component="h3" sx={{ color:"#fa8d22", fontWeight: "bold" }}>
+            <Typography mt={4} variant="h5" component="h3" sx={{ color:"#494b4c", fontWeight: "bold" }}>
                     Nội dung bài viết
                 </Typography>
             <Box sx={{margin: " 20px 0"}} >

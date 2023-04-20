@@ -1,8 +1,6 @@
-import React,{ useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { fecthArticles } from '../../store/actions/arrticlesAction'; 
-import { fecthAllUser } from '../../store/actions/getUserAction';
 import {Box, Typography, Grid, Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -13,13 +11,8 @@ import "./ArticleList.scss";
 
 const ArticleRelated= () => {
     const { articleName } = useParams();
-    const dispatch = useDispatch();
     const { articles } = useSelector(state => state.articles);
     const { users } = useSelector(state => state.users);
-    useEffect(() => {
-        dispatch(fecthArticles());
-        dispatch(fecthAllUser());
-    }, [dispatch]);
 
     const article = articles.find((article) => article.title === articleName);
       console.log('check article: ',article )
@@ -30,7 +23,7 @@ const ArticleRelated= () => {
     
     return (
         <>
-        <Typography variant="h4" component="h1" sx={{color: "#FA8D22"}} >Bài viết liên quan</Typography>
+        <Typography variant="h4" component="h1" sx={{color: "#444444"}} >Bài viết liên quan</Typography>
         <Grid container spacing={3} mt={"15px"} mb={"100px"}>
             {filteredArticles && filteredArticles.length > 0 && filteredArticles.map((article)=>{
                 const user = users.find((user) => user.id === article.userId)
