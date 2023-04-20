@@ -25,6 +25,7 @@ import Introduce from "./pages/Introduce";
 
 
 import ArticleList from "./components/ArticleList/ArticleList";
+import User from "./pages/User";
 function App() {
   const {isLogin} = useSelector((state) => state.account);
   const [openToast, setOpenToast] = useState(true);
@@ -49,7 +50,7 @@ function App() {
             <Route path="laundry" element = {<ArticleList categoryId='4' />}/>
           </Route>
           <Route path="/experience/:articleName" element = {<ExperienceDetail />}/>
-          <Route path="/user-infor" element = {<InFor/>}/>
+          <Route path="/user-infor" element = {<User/>}/>
           <Route path="/new-experience" element = {<NewExperience/>}/>
           <Route path="/history" element = {<History/>}/>
           <Route path="/privacy-policy" element = {<PrivacyPolicy/>}/>

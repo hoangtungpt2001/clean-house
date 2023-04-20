@@ -1,7 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fecthArticles,fecthLikes } from '../../store/actions/arrticlesAction'; 
-import { fecthAllUser } from '../../store/actions/getUserAction';
 import {Box, Typography, Grid, Avatar,Button, Pagination } from "@mui/material";
 import { Link } from "react-router-dom";
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -19,7 +18,6 @@ const ArticleList = ({ categoryId }) => {
     useEffect(() => {
         dispatch(fecthArticles());
         dispatch(fecthLikes());
-        dispatch(fecthAllUser());
     }, [dispatch]);
  
     const filteredArticles = categoryId

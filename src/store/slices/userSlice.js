@@ -5,6 +5,7 @@ export const userSlice= createSlice({
         user: {},
         isLoading: false,
         error: null,
+        roles: []
     },
     reducers: {
         getUserLoading: (state) => {
@@ -17,9 +18,15 @@ export const userSlice= createSlice({
         getUserFailed: (state, action) => {
             state.isLoading = false;
             state.error= action.payload;
+        },
+        getRoles: (state,action) => {
+            state.roles = action.payload;
+        },
+        updateUser: (state, action) => {
+            state.user = action.payload;
         }
     }
 })
-export const { getUserLoading, getUserSuccess, getUserFailed } = userSlice.actions
+export const { getUserLoading, getUserSuccess, getUserFailed,getRoles, updateUser  } = userSlice.actions
 
 export default userSlice.reducer

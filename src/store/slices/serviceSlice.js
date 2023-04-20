@@ -29,11 +29,16 @@ export const serviceSlice= createSlice({
             if (orderIndex !== -1) {
                 state.orders[orderIndex].rating = rating;
             }
+        },
+         deleteService: (state, action) => {
+            const index = state.services.findIndex(service => service.id === action.payload);
+            if (index !== -1) {
+                state.services.splice(index, 1);
+            }
         }
-       
     }
     }
 )
-export const { getStatus, getService, getOrders, updateOrderStatus,updateOrderRating } = serviceSlice.actions
+export const { getStatus, getService, getOrders, updateOrderStatus,updateOrderRating,deleteService } = serviceSlice.actions
 
 export default serviceSlice.reducer
