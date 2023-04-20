@@ -1,7 +1,6 @@
 import React,{ useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fecthArticles, addLikeApi, removeLikeApi } from '../../store/actions/arrticlesAction'; 
-import { fecthAllUser } from '../../store/actions/getUserAction';
 import { useParams } from "react-router-dom";
 import {Box, Typography, Avatar, IconButton } from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -47,7 +46,6 @@ const ArticleDetail = () => {
  
     useEffect(() => {
         dispatch(fecthArticles());
-        dispatch(fecthAllUser());
     }, [dispatch]);
 
     const article = articles ? articles.find((article) => article.title === articleName) : {};

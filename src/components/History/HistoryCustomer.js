@@ -1,7 +1,6 @@
 import React,{ useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fecthStatus, fecthService, fecthOrder, editOrderRating,updateOrderStatusId } from '../../store/actions/serviceAction';
-import { fecthAllUser } from '../../store/actions/getUserAction';
 import { Typography, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Rating, Button, Modal,Box} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -34,8 +33,6 @@ const HistoryCustomer = () => {
         dispatch(fecthStatus());
         dispatch(fecthService());
         dispatch(fecthOrder());
-        dispatch(fecthAllUser());
-     
     }, [dispatch]);
   
     const currentOrder = useMemo(() => orders

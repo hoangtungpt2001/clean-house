@@ -23,6 +23,7 @@ function Login(props) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorName, setErrorName] = useState(false);
+    const [errorNameLen, setErrorNameLen] = useState(false);
     const [errorPasswordEmpty, setErrorPasswordEmpty] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
     const [showPass, setShowPass] = useState(false);
@@ -64,6 +65,9 @@ function Login(props) {
         } else {
           setErrorPasswordEmpty(false)
         }
+         if(username.lenght > 0 && (username.length < 6 || username.length > 30)){
+            setErrorNameLen(true)
+          }
         //check password < 6
         if(username && password && password.length < 6){
             setErrorPassword(true)
@@ -74,6 +78,7 @@ function Login(props) {
           setOpenToast(true)
         }
           setErrorName(false);
+          setErrorNameLen(false)
           setErrorPassword(false);
           setErrorPasswordEmpty(false);
           setUsername("");
@@ -131,6 +136,7 @@ function Login(props) {
               onChange={(event) => setUsername(event.target.value)}
               />
               {errorName && <FormHelperText error={true} >Bạn phải nhập tên tài khoản!!!</FormHelperText>}
+              {errorNameLen && <FormHelperText error={true} >Tên tài khoản phải từ 6 đến 30 ký tự!!!</FormHelperText>}
             </StyledFormControl>
              <StyledFormControl fullWidth  sx={{mt:3}} >
               <OutlinedInput 
