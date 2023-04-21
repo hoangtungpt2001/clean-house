@@ -102,9 +102,14 @@
         background-color: transparent !important;
     }
     .user-menu-link {
+        color: $color-subheading;
         display: flex;
         align-items: center;
         gap: 0 10px;
+        &:hover {
+            color: $color-prymary;
+            background-color: transparent !important;
+          }
     }
 }
 

@@ -44,9 +44,9 @@ const ArticleDetail = () => {
 
     const userId = isLogin ? account.userId : "";
  
-    useEffect(() => {
-        dispatch(fecthArticles());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(fecthArticles());
+    // }, [dispatch]);
 
     const article = articles ? articles.find((article) => article.title === articleName) : {};
     const author = users ? users.find((user) => user.id === article.userId) : {};

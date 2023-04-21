@@ -1,7 +1,4 @@
-
-
 import React from 'react';
-
 import Layout from '../components/layout/Layout';
 import Process from '../components/Process/Process';
 import Slider from '../components/Slider/Slider';
@@ -11,19 +8,12 @@ const Home = () => {
 
   return (
     <Layout>
-    <Slider/>
-    <Conveniences />
-    <Commitment />
-    <Process/>
-        
+      <Slider/>
+      <Conveniences />
+      <Commitment />
+      <Process/>
     </Layout>
   )
-
-
-
-
-      
-  
 }
 
 export default Home;

@@ -82,17 +82,17 @@
                 }
             }
         }
-        .service {
-            .service-content {
-                margin-top: 50px;
-                display: flex;
-                flex-direction: column;
-                gap: 20px 0;
-                .service-heading {
-                    color: $color-prymary;
-                    font-weight: 600;
-                }
-                .service-item {
+      
+        .service-content {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px 0;
+            .service-heading {
+                color: $color-prymary;
+                font-weight: 600;
+            }
+            .service-item {
                     display: flex;
                     align-items: center;
                     .service-title {
@@ -104,13 +104,13 @@
                         flex: 1;
                         color: $color-subheading;
                     }
-                }
-                .service-button {
-                    display: flex;
-                    align-items: center;
-                    gap:  0 100px;
-                }
             }
-        }
+            .service-button {
+                display: flex;
+                align-items: center;
+                gap:  0 100px;
+            }
+            }
+       
     }
 }

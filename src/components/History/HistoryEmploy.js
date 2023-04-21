@@ -22,8 +22,10 @@ const HistoryEmploy = () => {
   const { users } = useSelector(state => state.users);
   const {isLogin,account} = useSelector((state) => state.account);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
+   const [itemId, setItemId] = useState(null);
+  const handleOpen = (id) => {
     setOpen(true);
+    setItemId(id)
   };
   const handleClose = () => {
     setOpen(false);
@@ -34,7 +36,7 @@ const HistoryEmploy = () => {
         dispatch(fecthOrder());
     }, [dispatch]);
 
-    const slicedStatus = statuses.slice(0, 7);
+    const slicedStatus = statuses?.slice(0, 7);
    
     const currentOrder = useMemo(() => orders
     ? orders.filter((order) => (order.statusId !== 7 && order.statusId !== 8 && order.workerId === account.userId) )
@@ -44,39 +46,42 @@ const HistoryEmploy = () => {
     : [], [orders, account.userId]);
    
 
-  const progressInitialValue = useMemo(() => {
-  if (currentOrder && currentOrder.length > 0 && statuses && statuses.length > 0) {
-    let initialStatusId = '';
-    for (let i = 0; i < currentOrder.length; i++) {
-      const order = currentOrder[i];
-      const status = statuses.find((s) => s.id === order.statusId);
-      if (status) {
-        initialStatusId = status.id;
-        break;
-      }
-    }
-    return initialStatusId;
-  }
-  return '';
-}, [currentOrder, statuses]);
+//   const progressInitialValue = useMemo(() => {
+//   if (currentOrder && currentOrder.length > 0 && statuses && statuses.length > 0) {
+//     let initialStatusId = '';
+//     for (let i = 0; i < currentOrder.length; i++) {
+//       const order = currentOrder[i];
+//       const status = statuses.find((s) => s.id === order.statusId);
+//       if (status) {
+//         initialStatusId = status.id;
+//         break;
+//       }
+//     }
+//     return initialStatusId;
+//   }
+//   return '';
+// }, [currentOrder, statuses]);
 
-    const [progress, setProgress] = useState(progressInitialValue);
-    const handleChange = (event, orderId) => {
-      const newStatusId = event.target.value;
+    const [progress, setProgress] = useState("");
+    const [selectedRow, setSelectedRow] = useState(null);
+    const handleChangeStatus = (orderId,newStatusId) => {
       dispatch(updateOrderStatusId(orderId, newStatusId));
-      setProgress(newStatusId);
-      dispatch(fecthOrder());
     };
-    const handleCancleSerrvice = (event, orderId) =>{
+    const handleChange = (event, orderId) => {
+      setSelectedRow(orderId)
+      const newStatusId = event.target.value;
+      setProgress(newStatusId);
+      handleChangeStatus(orderId, newStatusId);
+     
+    };
+    const handleCancleSerrvice = (orderId) =>{
       dispatch(updateOrderStatusId(orderId, 8));
-      dispatch(fecthOrder());
       handleClose()
   }
   return (
     <>
      {isLogin && account.roleId === 3 && 
       <>
-      
      <Typography mb={"50px"} variant="h5" component="h1" sx={{ color:"#fa8d22", fontWeight: "bold" }}>
                 Hiện tại
     </Typography>
@@ -84,47 +89,52 @@ const HistoryEmploy = () => {
       <Table sx={{ minWidth: 650, marginBottom: "50px" }} aria-label="simple table" >
         <TableHead sx={{backgroundColor: "rgba(250, 141, 34,0.6)"}}>
           <TableRow >
-            <TableCell   >Tên khách hàng</TableCell>
-             <TableCell  >Tên dịch vụ</TableCell>
-            <TableCell  >Thời gian đăng ký</TableCell>
-            <TableCell  >Tiến độ</TableCell>
-            <TableCell  >Được đánh giá</TableCell>
-            <TableCell  >Hủy nhận việc</TableCell>
+            <TableCell align='center'  >Tên khách hàng</TableCell>
+            <TableCell align='center'  >Số điện thoại</TableCell>
+            <TableCell align='center'  >Địa chỉ</TableCell>
+             <TableCell align='center'  >Tên dịch vụ</TableCell>
+            <TableCell align='center' >Thời gian đăng ký</TableCell>
+            <TableCell align='center' >Tiến độ</TableCell>
+            <TableCell align='center' >Được đánh giá</TableCell>
+            <TableCell align='center' >Hủy nhận việc</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-       
          {currentOrder && currentOrder.length > 0 && currentOrder.map((item)=>{
             const service = services ? services.find((service) => service.id === item.serviceId) : {};
-            const user = users ?  users.find((user) => user.id === item.customerId) : {};
-            
+            const user = users ? users.find((user) => user.id === item.customerId) : {};
             return ( 
               <TableRow key={item.id}>
                 <TableCell component="th" >
                     {user.firstName} {user.lastName}
                 </TableCell>
-                <TableCell > {service.name}</TableCell>
+                <TableCell > {user?.phone}</TableCell>
+                <TableCell > {item.address}</TableCell>
+                <TableCell > {service?.name}</TableCell>
                 <TableCell >{item.date}</TableCell>
                 <TableCell style={{ width: "250px" }} >
-      
                   <Select
-                      value={progress}
+                      value={
+                    selectedRow === item.id // use the state value for the selected row
+                      ? progress
+                      : item.statusId
+                  }
                       variant="standard"
                       label="Tiến độ"
                       onChange={(event) => handleChange(event,item.id)}
                       sx={{
                         borderColor: "#fa8d22", width: "100%",
                           '&:before': {
-                            borderBottom: 'none', // bỏ gạch dưới trước khi Select được chọn
+                            borderBottom: 'none', 
                           },
                           '&:after': {
-                            borderBottom: 'none', // bỏ gạch dưới sau khi Select được chọn
+                            borderBottom: 'none', 
                           },
                           '&:hover:not(.Mui-disabled):before': {
-                            borderBottom: 'none', // bỏ gạch dưới khi Select được hover
+                            borderBottom: 'none', 
                           },
                           '& .MuiInputBase-input': {
-                            textDecoration: 'none', // bỏ gạch dưới của input trong Select
+                            textDecoration: 'none', 
                           },
                         '& .MuiSelect-select': {
                           height: '20px',
@@ -135,20 +145,18 @@ const HistoryEmploy = () => {
                           <MenuItem
                           key={i.id}
                           value={i.id}
-                         
                           >
                           {i.name}
                           </MenuItem>
                       ))}
                   </Select>
-              
                   </TableCell> 
                   <TableCell  >
                     <Rating name="read-only" value={item.rating} readOnly />
                   </TableCell>
                   <TableCell >
-                     {progress === 1 ? 
-                  <Button variant="outlined" onClick={handleOpen}
+                     {progress === 1 || item.statusId === 1 ? 
+                  <Button variant="outlined" onClick={()=>handleOpen(item.id)}
                     sx={{color:"#fa8d22", 
                     borderColor: "#fa8d22",
                     "&:hover": {
@@ -178,7 +186,7 @@ const HistoryEmploy = () => {
                                 Xác nhận hủy công việc?
             </Typography>
             <Box sx={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-              <Button variant="outlined" onClick={(event) => handleCancleSerrvice(event, item.id)}
+              <Button variant="outlined" onClick={() => handleCancleSerrvice(itemId)}
                     sx={{color:"#fa8d22", 
                     borderColor: "#fa8d22",
                     "&:hover": {
@@ -205,9 +213,7 @@ const HistoryEmploy = () => {
         </TableBody>
       </Table>
     </TableContainer>
-    
    
-    
      <Typography mb={"50px"} variant="h5" component="h1" sx={{ color:"#fa8d22", fontWeight: "bold" }}>
                 Đã hoàn thành
     </Typography>
@@ -215,11 +221,13 @@ const HistoryEmploy = () => {
       <Table sx={{ minWidth: 650, marginBottom: "50px" }} aria-label="simple table" >
         <TableHead sx={{backgroundColor: "rgba(250, 141, 34,0.6)"}}>
           <TableRow>
-           <TableCell >Tên khách hàng</TableCell>
-           <TableCell >Tên dịch vụ</TableCell>
-            <TableCell >Thời gian đăng ký</TableCell>
-            <TableCell >Tiến độ</TableCell>
-            <TableCell >Được đánh giá</TableCell>
+          <TableCell align='center'  >Tên khách hàng</TableCell>
+            <TableCell align='center'  >Số điện thoại</TableCell>
+            <TableCell align='center'  >Địa chỉ</TableCell>
+             <TableCell align='center'  >Tên dịch vụ</TableCell>
+            <TableCell align='center' >Thời gian đăng ký</TableCell>
+            <TableCell align='center' >Tiến độ</TableCell>
+            <TableCell align='center' >Được đánh giá</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -230,11 +238,13 @@ const HistoryEmploy = () => {
             return ( 
                 <TableRow key={item.id}>
                   <TableCell component="th" >
-                    {user.firstName} {user.lastName}
+                    {user?.firstName} {user?.lastName}
                   </TableCell>
-                   <TableCell >{service.name}</TableCell>
+                  <TableCell > {user?.phone}</TableCell>
+                  <TableCell > {item.address}</TableCell>
+                   <TableCell >{service?.name}</TableCell>
                   <TableCell >{item.date}</TableCell>
-                  <TableCell >{status.name}</TableCell>
+                  <TableCell >{status?.name}</TableCell>
                   <TableCell >
                     <Rating name="read-only" value={item.rating} readOnly />
                     </TableCell>

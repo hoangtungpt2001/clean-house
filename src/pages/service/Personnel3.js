@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading1 from "../../components/Loading/Loading";
-import { FetchCategory, fecthService } from "../../store/actions/serviceAction";
+import { fecthCatories, fecthService } from "../../store/actions/serviceAction";
 import { NavLink } from "react-router-dom";
 import { fecthAllUser } from "../../store/actions/getUserAction";
 
@@ -14,7 +14,7 @@ const Personnel3 = ({value1}) => {
   useEffect(() => {
     dispatch(fecthService());
     dispatch(fecthAllUser());
-    dispatch(FetchCategory());
+    dispatch(fecthCatories());
   }, [dispatch]);
   
   const { users } = useSelector((state) => state.users);

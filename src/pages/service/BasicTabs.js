@@ -10,8 +10,8 @@ import Dicho from "./Dicho";
 
 import React,{ useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FetchCategory, fecthService } from "../../store/actions/serviceAction";
-import { fecthAllUser } from "../../store/actions/getUserAction";
+import { fecthCatories } from "../../store/actions/serviceAction";
+
 import Giatui from "./Giatui";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,7 +49,7 @@ function a11yProps(index) {
 
 export default function BasicTabs() {
   
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -61,7 +61,7 @@ export default function BasicTabs() {
 
 
   useEffect(() => {
-    dispatch(FetchCategory());
+    dispatch(fecthCatories());
     
   }, [dispatch]);
   return (

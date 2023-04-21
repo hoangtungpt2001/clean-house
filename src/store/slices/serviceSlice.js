@@ -31,18 +31,26 @@ export const serviceSlice= createSlice({
                 state.orders[orderIndex].rating = rating;
             }
         },
-         deleteService: (state, action) => {
-            const index = state.services.findIndex(service => service.id === action.payload);
-            if (index !== -1) {
-                state.services.splice(index, 1);
-            }
+        addService: (state, action) => {
+            state.services.push(action.payload);
         },
-        getCategory: (state, action) => {
+        updateService: (state, action) => {
+            const index = state.services.findIndex(
+                (service) => service.id === action.payload.id
+            );
+            state.services[index] = action.payload;
+        },
+        deleteService: (state, action) => {
+            const serviceId = action.payload;
+            state.services = state.services.filter(service => service.id !== serviceId);
+        },
+        getCategories: (state, action) => {
             state.categories = action.payload;
         },
     }
     }
 )
-export const { getStatus, getService, getOrders, updateOrderStatus,updateOrderRating,deleteService,getCategory  } = serviceSlice.actions
+export const { getStatus, getService, getOrders, updateOrderStatus, updateOrderRating, deleteService, updateService, addService, getCategories } = serviceSlice.actions
+
 
 export default serviceSlice.reducer

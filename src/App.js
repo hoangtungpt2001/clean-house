@@ -10,18 +10,20 @@ import Experience from "./pages/Experience";
 import Home from "./pages/Home";
 import Pagenotfound from "./pages/Pagenotfound";
 import GoToTop from "./components/GoToTop/GoToTop";
-import "./App.scss";
-import InFor from "./pages/InFor";
+
+import './App.scss';
+
 import ExperienceDetail from "./pages/ExperienceDetail";
 import NewExperience from "./pages/NewExperience";
 import History from "./pages/History";
 import PrivacyPolicy from "./pages/privacyPolicy";
 import TermsOfUse from "./pages/termsOfUse";
 import Introduce from "./pages/Introduce";
+import User  from "./pages/User";
 
 import ArticleList from "./components/ArticleList/ArticleList";
 
-import User from "./pages/User";
+
 import Detail from "./pages/service/Detail";
 
 function App() {

@@ -1,4 +1,5 @@
 import React, { useState  } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {useSelector, useDispatch  } from 'react-redux';
 import { addArticles } from '../../store/actions/arrticlesAction';
 import ReactQuill from 'react-quill';
@@ -70,6 +71,7 @@ const CreatePost = () => {
       }
       setOpenToast(false);
     };
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         const userId= user.id;
@@ -88,6 +90,7 @@ const CreatePost = () => {
             setCategory("");
             setContent("");
             setOpenToast(false);
+            navigate('/experience');
         }
        
     }
