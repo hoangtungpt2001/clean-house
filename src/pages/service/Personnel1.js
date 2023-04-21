@@ -5,7 +5,7 @@ import { FetchCategory, fecthService } from "../../store/actions/serviceAction";
 import { NavLink } from "react-router-dom";
 import { fecthAllUser } from "../../store/actions/getUserAction";
 
-const Personnel = ({value1}) => {
+const Personnel1 = ({value1}) => {
   const [data, setData] = useState([]);
   // const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -104,4 +104,4 @@ const Personnel = ({value1}) => {
   );
 };
 
-export default Personnel;
+export default Personnel1;

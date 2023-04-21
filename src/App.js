@@ -22,6 +22,7 @@ import Introduce from "./pages/Introduce";
 import ArticleList from "./components/ArticleList/ArticleList";
 
 import User from "./pages/User";
+import Detail from "./pages/service/Detail";
 
 function App() {
   const { isLogin } = useSelector((state) => state.account);
@@ -39,7 +40,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/service" element={<Services />} />
-          <Route path="/service/:id" element={<Detail />} />
+          <Route path="/service/:id" element={<Detail  />} />
           <Route path="/experience/" end element={<Experience />}>
             <Route path="" element={<ArticleList />} />
             <Route path="clean-up" element={<ArticleList categoryId="1" />} />

@@ -1,4 +1,4 @@
-import { getStatus, getService, getOrders, updateOrderStatus, updateOrderRating,deleteService } from "../slices/serviceSlice";
+import { getStatus, getService, getOrders, updateOrderStatus, updateOrderRating,deleteService, getCategory } from "../slices/serviceSlice";
 import axios from "axios";
 
 export const fecthStatus = () => async dispatch => {
@@ -52,4 +52,14 @@ export const editOrderRating = (orderId, rating) => async (dispatch) => {
     console.log(error)
      throw error.response;
   }
+};
+
+export const FetchCategory = () => async (dispatch) => {
+  try {
+    const response = await axios.get("http://localhost:3001/api/categories");
+    dispatch(getCategory(response.data));
+} catch (error) {
+  console.log(error)
+   throw error.response;
+}
 };
