@@ -21,11 +21,12 @@ import History from "./pages/History";
 import PrivacyPolicy from "./pages/privacyPolicy";
 import TermsOfUse from "./pages/termsOfUse";
 import Introduce from "./pages/Introduce";
+import User  from "./pages/User";
 
 
 
 import ArticleList from "./components/ArticleList/ArticleList";
-import User from "./pages/User";
+
 function App() {
   const {isLogin} = useSelector((state) => state.account);
   const [openToast, setOpenToast] = useState(true);
