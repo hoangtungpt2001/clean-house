@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
-import GardenCleaningService from "./GardenCleaningService";
-import HouseCleaningService from "./HouseCleaningService";
-import OfficeCleaningService from "./OfficeCleaningService";
+import GardenCleaningService from "./Dondep";
+import HouseCleaningService from "./Nauan";
+import OfficeCleaningService from "./Dicho";
 import BasicTabs from "./BasicTabs";
 
 const Services = () => {

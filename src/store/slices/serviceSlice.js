@@ -4,7 +4,8 @@ export const serviceSlice= createSlice({
     initialState: {
         services: [],
         statuses: [],
-        orders: []
+        orders: [],
+        categories: []
     },
     reducers: {
         getStatus: (state, action) => {
@@ -35,10 +36,13 @@ export const serviceSlice= createSlice({
             if (index !== -1) {
                 state.services.splice(index, 1);
             }
-        }
+        },
+        getCategory: (state, action) => {
+            state.categories = action.payload;
+        },
     }
     }
 )
-export const { getStatus, getService, getOrders, updateOrderStatus,updateOrderRating,deleteService } = serviceSlice.actions
+export const { getStatus, getService, getOrders, updateOrderStatus,updateOrderRating,deleteService,getCategory  } = serviceSlice.actions
 
 export default serviceSlice.reducer

@@ -1,12 +1,13 @@
 import React from 'react'
 import Personnel from './Personnel'
 
-const GardenCleaningService = () => {
+const Dondep = ({value}) => {
   return (
     <div>
-      <Personnel/>
+      <Personnel value1= {value}/>
+      
     </div>
   )
 }
 
-export default GardenCleaningService
+export default Dondep
