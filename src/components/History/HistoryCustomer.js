@@ -22,8 +22,10 @@ const HistoryCustomer = () => {
   const { users } = useSelector(state => state.users);
   const {isLogin,account} = useSelector((state) => state.account);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
+  const [itemId, setItemId] = useState(null);
+  const handleOpen = (id) => {
     setOpen(true);
+    setItemId(id)
   };
   const handleClose = () => {
     setOpen(false);
@@ -48,9 +50,9 @@ const HistoryCustomer = () => {
       dispatch(editOrderRating(orderId, newValue));
       
     }
-    const handleCancleSerrvice = (event, orderId) =>{
+    const handleCancleSerrvice = (orderId) =>{
       dispatch(updateOrderStatusId(orderId, 8));
-      dispatch(fecthOrder());
+      handleClose();
   }
   return (
     <>
@@ -65,6 +67,7 @@ const HistoryCustomer = () => {
           <TableRow>
             <TableCell >Tên dịch vụ</TableCell>
             <TableCell >Tên người làm</TableCell>
+            <TableCell >Số điện thoại</TableCell>
             <TableCell >Thời gian đăng kí</TableCell>
             <TableCell >Tiến độ</TableCell>
             <TableCell >Đánh giá</TableCell>
@@ -79,21 +82,24 @@ const HistoryCustomer = () => {
             return (
               <TableRow key={item.id}>
                 <TableCell component="th" >
-                {service.name}
+                {service?.name}
                 </TableCell>
                 <TableCell >
-                  {user.firstName} {user.lastName}
+                  {user?.firstName} {user?.lastName}
+                </TableCell>
+                <TableCell >
+                  {user?.phone}
                 </TableCell>
                 <TableCell >{item.date}</TableCell>
                 <TableCell >
-                  {status.name}
+                  {status?.name}
                   </TableCell> 
                 <TableCell  >
                   <Rating name="read-only" value={item.rating} readOnly />
                 </TableCell>
                 <TableCell  >
                   {status.id === 1 ? 
-                  <Button variant="outlined" onClick={handleOpen}
+                  <Button variant="outlined" onClick={()=>handleOpen(item.id)}
                     sx={{color:"#fa8d22", 
                     borderColor: "#fa8d22",
                     "&:hover": {
@@ -123,14 +129,14 @@ const HistoryCustomer = () => {
                                 Xác nhận hủy dịch vụ?
             </Typography>
             <Box sx={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-              <Button variant="outlined" onClick={(event) => handleCancleSerrvice(event, item.id)}
+              <Button variant="outlined" onClick={() => handleCancleSerrvice(itemId)}
                     sx={{color:"#fa8d22", 
                     borderColor: "#fa8d22",
                     "&:hover": {
                             borderColor: "#fa8d22",
                             backgroundColor: "rgba(250, 141, 34,0.1)"
                             }
-                    }}>Xác nhận hủy</Button>
+                    }}>Xác nhận hủy  </Button>
                   <Button variant="outlined" onClick={handleClose}
                         sx={{color:"#fa8d22", 
                         borderColor: "#fa8d22",
@@ -158,6 +164,7 @@ const HistoryCustomer = () => {
           <TableRow>
             <TableCell >Tên dịch vụ</TableCell>
             <TableCell >Tên người làm</TableCell>
+            <TableCell >Số điện thoại</TableCell>
             <TableCell >Thời gian đăng kí</TableCell>
             <TableCell >Tiến độ</TableCell>
             <TableCell >Đánh giá</TableCell>
@@ -174,6 +181,9 @@ const HistoryCustomer = () => {
                {service.name}
               </TableCell>
               <TableCell >{user.firstName} {user.lastName}</TableCell>
+               <TableCell >
+                  {user.phone}
+                </TableCell>
               <TableCell >{item.date}</TableCell>
               <TableCell >{status.name}</TableCell>
               <TableCell >

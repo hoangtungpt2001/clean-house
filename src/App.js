@@ -14,7 +14,7 @@ import Home from "./pages/Home";
 import Pagenotfound from "./pages/Pagenotfound";
 import GoToTop from "./components/GoToTop/GoToTop";
 import './App.scss';
-import InFor from "./pages/InFor";
+
 import ExperienceDetail from "./pages/ExperienceDetail";
 import NewExperience from "./pages/NewExperience";
 import History from "./pages/History";

@@ -15,7 +15,7 @@ const ArticleRelated= () => {
     const { users } = useSelector(state => state.users);
 
     const article = articles.find((article) => article.title === articleName);
-      console.log('check article: ',article )
+    //   console.log('check article: ',article )
     const typeId = article ? article.categoryId : {};
     const filteredArticles = typeId
     ? articles.filter((article) => article.categoryId === typeId)

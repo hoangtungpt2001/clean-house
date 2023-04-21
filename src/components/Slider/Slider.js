@@ -43,7 +43,7 @@ function Slider()
     return (
         <Box className="slider">
                <Carousel
-                draggable={false} // Chặn kéo trượt bằng chuột
+                draggable={false} 
                 responsive={responsive}
                 infinite={true}
                 showDots
@@ -59,8 +59,7 @@ function Slider()
                     ))}
                 </Carousel>
         </Box>
-         
-     
+    
     )
 }
 
