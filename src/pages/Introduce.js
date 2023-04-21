@@ -14,7 +14,7 @@ const Introduce = () => {
                 <Typography variant="h4" component="h1" sx={{color: "#444444"}} mt={"50px"} >
                                 GIỚI THIỆU
                     </Typography>
-                <Box mt={6}>
+                <Box mt={6} mb={6}>
                     <Typography variant="h5" component="h2" sx={{color: "#fa8d22"}} >
                                   CHÚNG TÔI LÀ HOUSE CLEANING
                     </Typography>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/layout/Layout";
-import GardenCleaningService from "./GardenCleaningService";
-import HouseCleaningService from "./HouseCleaningService";
-import OfficeCleaningService from "./OfficeCleaningService";
+import GardenCleaningService from "./Dondep";
+import HouseCleaningService from "./Nauan";
+import OfficeCleaningService from "./Dicho";
 import BasicTabs from "./BasicTabs";
 
 const Services = () => {
@@ -17,15 +17,7 @@ const Services = () => {
   
   return (
     <Layout>
-      {/* <h1>vui lòng chọn dịch vụ</h1>
-      {arrService.map(item => {
-        return(
-            <button onClick={() => setService(item)}>DV vệ sinh nhà ở</button>
-        )
-      })}
-      {service === 'HouseCleaningService' && <HouseCleaningService />}
-      {service === 'OfficeCleaningService' && <OfficeCleaningService />}
-      {service === 'GardenCleaningService' && <GardenCleaningService />}  */}
+      
         <BasicTabs/>
     </Layout>
   );

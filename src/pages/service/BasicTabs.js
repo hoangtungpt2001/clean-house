@@ -1,13 +1,18 @@
-import * as React from "react";
+
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import GardenCleaningService from "./GardenCleaningService";
-import HouseCleaningService from "./HouseCleaningService";
-import OfficeCleaningService from "./OfficeCleaningService";
+import Dondep from "./Dondep";
+import Nauan from "./Nauan";
+import Dicho from "./Dicho";
 
+import React,{ useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fecthCatories } from "../../store/actions/serviceAction";
+
+import Giatui from "./Giatui";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -41,13 +46,24 @@ function a11yProps(index) {
   };
 }
 
+
 export default function BasicTabs() {
-  const [value, setValue] = React.useState(0);
+  
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const dispatch = useDispatch();
+  const { categories } = useSelector((state) => state.services);
+  // console.log("check category:",categories[0].name );
+  // console.log("check categoryID:",categories[1].id );
 
+
+  useEffect(() => {
+    dispatch(fecthCatories());
+    
+  }, [dispatch]);
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -56,19 +72,25 @@ export default function BasicTabs() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Dịch Vụ Vệ Sinh Nhà Ở" {...a11yProps(0)} />
-          <Tab label="Dịch Vụ Vệ Sinh Văn Phòng" {...a11yProps(1)} />
-          <Tab label="Dịch Vụ Vệ Sinh Sân Vườn" {...a11yProps(2)} />
+          <Tab label={categories[0]?.name } {...a11yProps(0)}  />
+          <Tab label={categories[1]?.name } {...a11yProps(1)}  />
+          <Tab label={categories[2]?.name } {...a11yProps(2)}  />
+          <Tab label={categories[3]?.name } {...a11yProps(3)}  />
+          
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <GardenCleaningService />
+        <Dondep value={categories[0]?.id}/> 
+
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <HouseCleaningService />
+        <Nauan value={categories[1]?.id }/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <OfficeCleaningService />
+        <Dicho value={categories[2]?.id }/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Giatui value={categories[3]?.id }/>
       </TabPanel>
     </Box>
   );

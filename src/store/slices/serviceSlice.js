@@ -47,10 +47,10 @@ export const serviceSlice= createSlice({
         getCategories: (state, action) => {
             state.categories = action.payload;
         },
-        
     }
     }
 )
 export const { getStatus, getService, getOrders, updateOrderStatus, updateOrderRating, deleteService, updateService, addService, getCategories } = serviceSlice.actions
+
 
 export default serviceSlice.reducer
