@@ -1,4 +1,4 @@
-import { getStatus, getService, getOrders, updateOrderStatus, updateOrderRating,deleteService, updateService,addService, getCategories } from "../slices/serviceSlice";
+import { getStatus, getService, getOrders, addOrder, updateOrderStatus, updateOrderRating,deleteService, updateService,addService, getCategories } from "../slices/serviceSlice";
 
 import axios from "axios";
 
@@ -50,6 +50,14 @@ export const fecthOrder = () => async dispatch => {
     dispatch(getOrders(response.data));
   } catch (error) {
      throw error.response;
+  }
+};
+export const createOrder = (post) => async dispatch => {
+  try {
+    const response = await axios.post('http://localhost:3001/api/orders', post);
+    dispatch(addOrder(response.data));
+  } catch (error) {
+    throw error;
   }
 };
 export const updateOrderStatusId = (orderId, statusId) => async (dispatch) => {
