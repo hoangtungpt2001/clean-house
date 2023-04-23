@@ -17,6 +17,9 @@ export const serviceSlice= createSlice({
         getOrders: (state, action) => {
             state.orders = action.payload;
         },
+        addOrder: (state, action) => {
+            state.orders.push(action.payload);
+        },
         updateOrderStatus: (state, action) => {
         const { orderId, statusId } = action.payload;
         const orderIndex = state.orders.findIndex(order => order.id === orderId);
@@ -50,7 +53,7 @@ export const serviceSlice= createSlice({
     }
     }
 )
-export const { getStatus, getService, getOrders, updateOrderStatus, updateOrderRating, deleteService, updateService, addService, getCategories } = serviceSlice.actions
+export const { getStatus, getService, getOrders, addOrder, updateOrderStatus, updateOrderRating, deleteService, updateService, addService, getCategories } = serviceSlice.actions
 
 
 export default serviceSlice.reducer
