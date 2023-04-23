@@ -1,11 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
 import { fecthService } from "../../store/actions/serviceAction";
 import { fecthAllUser, fecthUserById } from "../../store/actions/getUserAction";
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import { Backdrop, Box, Fade, Modal, Typography } from "@mui/material";
 const ShowPersonnel = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 650,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
   const { id } = useParams();
   const [order, setOrder] = useState(true);
   console.log("id", typeof id);
@@ -67,49 +83,84 @@ const ShowPersonnel = () => {
                     <p className="product-data">{service?.name}</p>
                   </div>
                   <div className=".d-flex align-items-center gap-30">
-                    <button type="button" className="btn btn-outline-success">
-                      Thuê Dịch Vụ
-                    </button>
+                    <NavLink to="./RegisterService">
+                      <button type="button" className="btn btn-outline-success">
+                        Thuê Dịch Vụ
+                      </button>
+                    </NavLink>
                     <button
                       type="button"
-                      className="btn btn-outline-danger mx-2">
+                      className="btn btn-outline-danger mx-2"
+                      onClick={handleOpen}
+                    >
                       Liên Hệ
                     </button>
+                    <Modal
+                      aria-labelledby="transition-modal-title"
+                      aria-describedby="transition-modal-description"
+                      open={open}
+                      onClose={handleClose}
+                      closeAfterTransition
+                      slots={{ backdrop: Backdrop }}
+                      slotProps={{
+                        backdrop: {
+                          timeout: 500,
+                        },
+                      }}
+                    >
+                      <Fade in={open}>
+                        <Box sx={style}>
+                          <Typography
+                            id="transition-modal-title"
+                            variant="h6"
+                            component="h2"
+                          >
+                            <b>Vui lòng liên hệ cho tôi theo số điện thoại: </b>
+                            <span>{personnel?.phone}</span>
+                          </Typography>
+                        </Box>
+                      </Fade>
+                    </Modal>
                   </div>
                 </div>
               </div>
             </div>
             <div className="col-4">
               <div className="main-product-details">
-                
-                
                 <div className="border-bottom">
                   <h3>Cam Kết: </h3>
                   <div className="d-flex gap-10 align-items-center my-2">
-                    
-                  <AttachMoneyIcon/><p className="product-data">Thái độ hòa nhã, thật thà, nhanh nhẹn, khỏe mạnh, tận tụy với công việc.</p>
+                    <AttachMoneyIcon />
+                    <p className="product-data">
+                      Thái độ hòa nhã, thật thà, nhanh nhẹn, khỏe mạnh, tận tụy
+                      với công việc.
+                    </p>
                   </div>
-                  <br/>
+                  <br />
                   <div className="d-flex gap-10 align-items-center my-2">
-                    
-                  <AttachMoneyIcon/><p className="product-data">100% được đào tạo cơ bản, có dụng cụ, có đồng phục và chất tẩy rửa an toàn</p>
+                    <AttachMoneyIcon />
+                    <p className="product-data">
+                      100% được đào tạo cơ bản, có dụng cụ, có đồng phục và chất
+                      tẩy rửa an toàn
+                    </p>
                   </div>
-                  <br/>
+                  <br />
                   <div className="d-flex gap-10 align-items-center my-2">
-                    
-                  <AttachMoneyIcon/><p className="product-data">Làm việc theo quy trình tiêu chuẩn</p>
+                    <AttachMoneyIcon />
+                    <p className="product-data">
+                      Làm việc theo quy trình tiêu chuẩn
+                    </p>
                   </div>
-                  <br/>
+                  <br />
                   <div className="d-flex gap-10 align-items-center my-2">
-                    
-                  <AttachMoneyIcon/><p className="product-data">Tổ chức sắp xếp khóa học bài bản</p>
+                    <AttachMoneyIcon />
+                    <p className="product-data">
+                      Tổ chức sắp xếp khóa học bài bản
+                    </p>
                   </div>
-                  
                 </div>
               </div>
             </div>
-
-            
           </div>
         </div>
       </div>
@@ -140,7 +191,8 @@ const ShowPersonnel = () => {
                     <div>
                       <a
                         className="text-dark text-decoration-underline"
-                        href="/">
+                        href="/"
+                      >
                         Write a Review
                       </a>
                     </div>
@@ -162,7 +214,8 @@ const ShowPersonnel = () => {
                     <div className="d-flex justify-content-end">
                       <button
                         type="button"
-                        className="btn btn-outline-secondary">
+                        className="btn btn-outline-secondary"
+                      >
                         Gửi
                       </button>
                     </div>
@@ -191,17 +244,13 @@ const Detail = () => {
   };
 
   return (
-    
-      <Layout>
-        <div className="form-tong">
-          <div className="container mt-4">
-            <div className="row">
-              {loading ? <Loading /> : <ShowPersonnel />}
-            </div>
-          </div>
+    <Layout>
+      <div className="form-tong">
+        <div className="container mt-4">
+          <div className="row">{loading ? <Loading /> : <ShowPersonnel />}</div>
         </div>
-      </Layout>
-    
+      </div>
+    </Layout>
   );
 };
 

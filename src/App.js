@@ -11,7 +11,7 @@ import Home from "./pages/Home";
 import Pagenotfound from "./pages/Pagenotfound";
 import GoToTop from "./components/GoToTop/GoToTop";
 
-import './App.scss';
+import "./App.scss";
 
 import ExperienceDetail from "./pages/ExperienceDetail";
 import NewExperience from "./pages/NewExperience";
@@ -19,12 +19,12 @@ import History from "./pages/History";
 import PrivacyPolicy from "./pages/privacyPolicy";
 import TermsOfUse from "./pages/termsOfUse";
 import Introduce from "./pages/Introduce";
-import User  from "./pages/User";
+import User from "./pages/User";
 
 import ArticleList from "./components/ArticleList/ArticleList";
 
-
 import Detail from "./pages/service/Detail";
+import RegisterService from "./pages/service/RegisterService";
 
 function App() {
   const { isLogin } = useSelector((state) => state.account);
@@ -42,7 +42,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/service" element={<Services />} />
-          <Route path="/service/:id" element={<Detail  />} />
+          <Route
+            path="/service/:id/RegisterService"
+            element={<RegisterService />}
+          />
+          <Route path="/service/:id" element={<Detail />} />
           <Route path="/experience/" end element={<Experience />}>
             <Route path="" element={<ArticleList />} />
             <Route path="clean-up" element={<ArticleList categoryId="1" />} />
@@ -51,15 +55,17 @@ function App() {
             <Route path="laundry" element={<ArticleList categoryId="4" />} />
           </Route>
 
-          <Route path="/experience/:articleName" element = {<ExperienceDetail />}/>
-          <Route path="/user-infor" element = {<User/>}/>
-          <Route path="/new-experience" element = {<NewExperience/>}/>
-          <Route path="/history" element = {<History/>}/>
-          <Route path="/privacy-policy" element = {<PrivacyPolicy/>}/>
-          <Route path="/terms-of-use" element = {<TermsOfUse/>}/>
-          <Route path="/introduce" element = {<Introduce/>}/>
-          <Route path="*" element = {<Pagenotfound />}/>
-
+          <Route
+            path="/experience/:articleName"
+            element={<ExperienceDetail />}
+          />
+          <Route path="/user-infor" element={<User />} />
+          <Route path="/new-experience" element={<NewExperience />} />
+          <Route path="/history" element={<History />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
+          <Route path="/introduce" element={<Introduce />} />
+          <Route path="*" element={<Pagenotfound />} />
         </Routes>
       </BrowserRouter>
       <GoToTop />

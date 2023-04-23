@@ -24,7 +24,11 @@ export const userSlice= createSlice({
         },
         updateUser: (state, action) => {
             state.user = action.payload;
+        },
+        registerUser: (state , action) =>{
+            state.user = action.payload; 
         }
+
     }
 })
 export const { getUserLoading, getUserSuccess, getUserFailed,getRoles, updateUser  } = userSlice.actions

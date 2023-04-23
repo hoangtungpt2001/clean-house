@@ -5,7 +5,7 @@ import { fecthCatories, fecthService } from "../../store/actions/serviceAction";
 import { NavLink } from "react-router-dom";
 import { fecthAllUser } from "../../store/actions/getUserAction";
 
-const Personnel = ({value1}) => {
+const Personnel = ({ value1 }) => {
   const [data, setData] = useState([]);
   // const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -16,18 +16,17 @@ const Personnel = ({value1}) => {
     dispatch(fecthAllUser());
     dispatch(fecthCatories());
   }, [dispatch]);
-  
+
   const { users } = useSelector((state) => state.users);
   console.log("check user:", users);
   const { services } = useSelector((state) => state.services);
   console.log("check service:", services);
   const { categories } = useSelector((state) => state.services);
-  console.log("check category:",categories );
-  
-  
-  const category = categories.find((item) => item?.id === value1)
-  const test1 =  services.filter(item => item?.categoryId === category?.id )
-  console.log("tesst1", test1 )
+  console.log("check category:", categories);
+
+  const category = categories.find((item) => item?.id === value1);
+  const test1 = services.filter((item) => item?.categoryId === category?.id);
+  console.log("tesst1", test1);
   const Loading = () => {
     return (
       <div
@@ -41,18 +40,14 @@ const Personnel = ({value1}) => {
       </div>
     );
   };
-  
+
   const ShowPersonnels = () => {
     return (
       <>
-   
-        
-    
-        {test1 && test1.length > 0 && test1.map((item) => {
-            
+        {test1 &&
+          test1.length > 0 &&
+          test1.map((item) => {
             const user = users.find((user) => user.id === item.userId);
-            
-            
             console.log("user:", user);
             return (
               <>
