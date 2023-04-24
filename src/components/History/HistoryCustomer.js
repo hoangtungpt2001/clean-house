@@ -98,7 +98,7 @@ const HistoryCustomer = () => {
                   <Rating name="read-only" value={item.rating} readOnly />
                 </TableCell>
                 <TableCell  >
-                  {status.id === 1 ? 
+                  {status?.id === 1 ? 
                   <Button variant="outlined" onClick={()=>handleOpen(item.id)}
                     sx={{color:"#fa8d22", 
                     borderColor: "#fa8d22",
