@@ -106,7 +106,7 @@ const HistoryEmploy = () => {
             return ( 
               <TableRow key={item.id}>
                 <TableCell component="th" >
-                    {user.firstName} {user.lastName}
+                    {user?.firstName} {user?.lastName}
                 </TableCell>
                 <TableCell > {user?.phone}</TableCell>
                 <TableCell > {item.address}</TableCell>
