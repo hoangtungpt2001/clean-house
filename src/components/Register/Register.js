@@ -94,29 +94,29 @@ const Register = () => {
 
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("user", user);
-  //   console.log("account", account);
-
-  //   const addUser = async () => {
-  //     await dispatch(addNewUser({ user, account }));
-  //     // dispatch(addNewAccount({ ...account, userId: state.auth.user.id }));
-  //   };
-  //   addUser();
-  //   // setAccount({ ...account, userId: state.auth.user.id });
-  //   // dispatch(addNewAccount({ ...account, userId: state.auth.user.id }));
-  //   console.log("user new: ", state.auth.user);
-  // };
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("user", user);
+    console.log("account", account);
+
     const addUser = async () => {
-      await dispatch(addNewUser(user));
-      await dispatch(addNewAccount({ ...account, userId: state.auth.user.id }));
-      console.log("user new: ", state.auth.user.id);
+      await dispatch(addNewUser({ user, account }));
+      // dispatch(addNewAccount({ ...account, userId: state.auth.user.id }));
     };
     addUser();
+    // setAccount({ ...account, userId: state.auth.user.id });
+    // dispatch(addNewAccount({ ...account, userId: state.auth.user.id }));
+    console.log("user new: ", state.auth.user);
   };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const addUser = async () => {
+  //     await dispatch(addNewUser(user));
+  //     await dispatch(addNewAccount({ ...account, userId: state.auth.user.id }));
+  //     console.log("user new: ", state.auth.user.id);
+  //   };
+  //   addUser();
+  // };
   return (
     <Box className="modal-register">
       <Box align="center" mb={2}>

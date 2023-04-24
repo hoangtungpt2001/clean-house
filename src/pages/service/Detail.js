@@ -5,7 +5,7 @@ import Layout from "../../components/layout/Layout";
 import { fecthService } from "../../store/actions/serviceAction";
 import { fecthAllUser, fecthUserById } from "../../store/actions/getUserAction";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { Backdrop, Box, Fade, Modal, Typography } from "@mui/material";
+import { Avatar, Backdrop, Box, Fade, Modal, Typography } from "@mui/material";
 const ShowPersonnel = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -33,11 +33,18 @@ const ShowPersonnel = () => {
   const service = services.find((item) => item.id === parseInt(id));
   const personnel = users.find((item) => item.id === service.userId);
   console.log("check service1111:", service);
+  const { user } = useSelector((state) => state.user);
+  console.log("user: ", user);
+  const { isLogin, account } = useSelector((state) => state.account);
 
   useEffect(() => {
     dispatch(fecthService());
     dispatch(fecthAllUser());
-  }, [dispatch]);
+    if (isLogin === true) {
+      const id = account.userId;
+      dispatch(fecthUserById(id));
+    }
+  }, [dispatch, isLogin, account.userId]);
 
   console.log("personnel", personnel);
 
@@ -82,46 +89,54 @@ const ShowPersonnel = () => {
                     <h3 className="product-heading">Công việc:</h3>{" "}
                     <p className="product-data">{service?.name}</p>
                   </div>
-                  <div className=".d-flex align-items-center gap-30">
-                    <NavLink to="./RegisterService">
-                      <button type="button" className="btn btn-outline-success">
-                        Thuê Dịch Vụ
+
+                  {account.roleId === 2 && (
+                    <div className=".d-flex align-items-center gap-30">
+                      <NavLink to={`./RegisterService/${service?.userId}`}>
+                        <button
+                          type="button"
+                          className="btn btn-outline-success"
+                        >
+                          Thuê Dịch Vụ
+                        </button>
+                      </NavLink>
+                      <button
+                        type="button"
+                        className="btn btn-outline-danger mx-2"
+                        onClick={handleOpen}
+                      >
+                        Liên Hệ
                       </button>
-                    </NavLink>
-                    <button
-                      type="button"
-                      className="btn btn-outline-danger mx-2"
-                      onClick={handleOpen}
-                    >
-                      Liên Hệ
-                    </button>
-                    <Modal
-                      aria-labelledby="transition-modal-title"
-                      aria-describedby="transition-modal-description"
-                      open={open}
-                      onClose={handleClose}
-                      closeAfterTransition
-                      slots={{ backdrop: Backdrop }}
-                      slotProps={{
-                        backdrop: {
-                          timeout: 500,
-                        },
-                      }}
-                    >
-                      <Fade in={open}>
-                        <Box sx={style}>
-                          <Typography
-                            id="transition-modal-title"
-                            variant="h6"
-                            component="h2"
-                          >
-                            <b>Vui lòng liên hệ cho tôi theo số điện thoại: </b>
-                            <span>{personnel?.phone}</span>
-                          </Typography>
-                        </Box>
-                      </Fade>
-                    </Modal>
-                  </div>
+                      <Modal
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        open={open}
+                        onClose={handleClose}
+                        closeAfterTransition
+                        slots={{ backdrop: Backdrop }}
+                        slotProps={{
+                          backdrop: {
+                            timeout: 500,
+                          },
+                        }}
+                      >
+                        <Fade in={open}>
+                          <Box sx={style}>
+                            <Typography
+                              id="transition-modal-title"
+                              variant="h6"
+                              component="h2"
+                            >
+                              <b>
+                                Vui lòng liên hệ cho tôi theo số điện thoại:{" "}
+                              </b>
+                              <span>{personnel?.phone}</span>
+                            </Typography>
+                          </Box>
+                        </Fade>
+                      </Modal>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -224,9 +239,23 @@ const ShowPersonnel = () => {
                 <div className="reviews">
                   <div className="review">
                     <div className="d-flex gap-10 align-items-center">
-                      <h6 className="mb-0">Ngoc Tung</h6>
+                      <Box className="user-account">
+                        <Avatar
+                          alt="user"
+                          src={user.avatar}
+                          sx={{ bgcolor: "#FA8D22" }}
+                        />
+                        <Typography
+                          className="user-name"
+                          sx={{ display: { xs: "none", sm: "block" } }}
+                        >
+                          {user.firstName} {user.lastName}:{" "}
+                          <span className="mt-3" style={{ color: "#777777" }}>
+                            bạn nay don dep sach se
+                          </span>
+                        </Typography>
+                      </Box>
                     </div>
-                    <p className="mt-3">bạn nay don dep sach se</p>
                   </div>
                 </div>
               </div>

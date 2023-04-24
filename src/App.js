@@ -43,7 +43,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/service" element={<Services />} />
           <Route
-            path="/service/:id/RegisterService"
+            path="/service/:id/RegisterService/:workerId"
             element={<RegisterService />}
           />
           <Route path="/service/:id" element={<Detail />} />

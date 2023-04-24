@@ -10,9 +10,10 @@ import Dicho from "./Dicho";
 
 import React,{ useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fecthCatories } from "../../store/actions/serviceAction";
+import { fecthCatories, fecthService } from "../../store/actions/serviceAction";
 
 import Giatui from "./Giatui";
+import { fecthAllUser } from "../../store/actions/getUserAction";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -62,7 +63,8 @@ export default function BasicTabs() {
 
   useEffect(() => {
     dispatch(fecthCatories());
-    
+    dispatch(fecthService());
+    dispatch(fecthAllUser());
   }, [dispatch]);
   return (
     <Box sx={{ width: "100%" }}>
