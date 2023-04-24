@@ -50,10 +50,7 @@ export const addNewUser = createAsyncThunk(
   "auth/addNewUser",
   async (user, { rejectWithValue }) => {
     try {
-      const data = await axios.post(
-        "http://localhost:3001/api/users",
-        user
-      );
+      const data = await axios.post("http://localhost:3001/api/users", user);
       return data.data;
     } catch (error) {
       return rejectWithValue(error.messages);

@@ -1,31 +1,94 @@
 import React, { useEffect, useState } from "react";
 
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
-import { Avatar } from "@mui/material";
+import { Alert, AlertTitle, Avatar, Snackbar } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { fecthService } from "../../store/actions/serviceAction";
-import { fecthAllUser } from "../../store/actions/getUserAction";
+import { createOrder, fecthService } from "../../store/actions/serviceAction";
+import { fecthAllUser, fecthUserById } from "../../store/actions/getUserAction";
+import Login from "../../components/Login/Login";
 
 const ShowPersonnel = () => {
-  const { id } = useParams();
-  const [order, setOrder] = useState(true);
-  console.log("id", typeof id);
+  const [isShow, setIsShow] = useState(false);
+  const navigate = useNavigate();
+  const { id, workerId } = useParams();
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.users);
   console.log("check user:", users);
   const { services } = useSelector((state) => state.services);
   console.log("check service:", services);
-  const service = services.find((item) => item.id === parseInt(id));
-  const personnel = users.find((item) => item.id === service.userId);
+
+  const [service, setService] = useState(
+    services.find((item) => item.id === parseInt(id))
+  );
   console.log("check service1111:", service);
 
+  const personnel = users.find((item) => item?.id === parseInt(workerId));
+  const { isLogin, account } = useSelector((state) => state.account);
+  console.log("sadsadas:", account);
+  let date = new Date().toJSON().slice(0, 10);
+  let userId = service?.id;
+  const [order, setOrder] = useState({
+    customerId: parseInt(localStorage.getItem("id")),
+    workerId: parseInt(workerId),
+    serviceId: parseInt(id),
+    date: date,
+    statusId: 1,
+    rating: 0,
+    address: "",
+  });
+  const { user } = useSelector((state) => state.user);
+  console.log("user: ", user);
+
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const tongleModalLogin = () => {
+    setLoginOpen(!loginOpen);
+  };
+
+  const tongleModalRegister = () => {
+    setRegisterOpen(!registerOpen);
+  };
+  console.log("order: ", order);
+
   useEffect(() => {
+    if (isLogin === true) {
+      const id = account.userId;
+      dispatch(fecthUserById(id));
+    }
     dispatch(fecthService());
     dispatch(fecthAllUser());
-  }, [dispatch]);
+  }, [dispatch, isLogin, account.userId]);
+  useEffect(() => {
+    setService((pre) => services.find((item) => item.id === parseInt(id)));
+  }, [id, services]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createOrder(order));
+    setIsShow(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setIsShow(false);
+  };
+
   return (
     <>
+      {isShow && (
+        <Snackbar
+          open={isShow}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert onClose={handleClose} severity="success" sx={{ width: "20%" }}>
+            Thuê Thành Công
+          </Alert>
+        </Snackbar>
+      )}
       <div className="main-product-wrapper py-2 home-wrapper-2">
         <div className="container-xxl">
           <div className="row">
@@ -101,7 +164,8 @@ const ShowPersonnel = () => {
                           type="text"
                           className="form-control"
                           id="inputEmail4"
-                          placeholder="Họ "
+                          value={user.firstName}
+                          disabled
                         />
                       </div>
                       <div className="form-group col-md-6">
@@ -110,7 +174,8 @@ const ShowPersonnel = () => {
                           type="text"
                           className="form-control"
                           id="inputPassword4"
-                          placeholder="Tên"
+                          value={user.lastName}
+                          disabled
                         />
                       </div>
                     </div>
@@ -120,19 +185,34 @@ const ShowPersonnel = () => {
                         type="text"
                         className="form-control"
                         id="inputAddress"
+                        value={order.address}
                         placeholder="VD: 27 Nguyễn Nhạc..."
+                        onChange={(event) =>
+                          setOrder({ ...order, address: event.target.value })
+                        }
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="inputAddress2">Addres</label>
+                      <label htmlFor="inputAddress2">Số Điện Thoại</label>
                       <input
                         type="text"
                         className="form-control"
                         id="inputAddress2"
-                        placeholder="Apartment, studio, or floor"
+                        value={user.phone}
+                        disabled
                       />
                     </div>
-                    <div className="row">
+                    <div className="form-group">
+                      <label htmlFor="inputAddress2">Loại Dịch Vụ</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="inputAddress2"
+                        value={service.name}
+                        disabled
+                      />
+                    </div>
+                    {/* <div className="row">
                       <div className="form-group col-md-6">
                         <label htmlFor="inputCity">City</label>
                         <input
@@ -168,11 +248,25 @@ const ShowPersonnel = () => {
                           Check me out
                         </label>
                       </div>
-                    </div>
-                    <button type="submit" className="btn btn-primary my-3">
-                      Sign in
-                    </button>
+                    </div>  */}
+
+                    {isLogin && (
+                      <button
+                        type="submit"
+                        onClick={handleSubmit}
+                        className="btn btn-primary my-3"
+                      >
+                        Thuê
+                      </button>
+                    )}
                   </form>
+                  {!isLogin && (
+                    <Login
+                      onClose={tongleModalLogin}
+                      registerOpen={tongleModalRegister}
+                      registerState={registerOpen}
+                    />
+                  )}
                 </div>
               </div>
             </div>
